@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  --font-body: 'Poppins', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: rgb(26, 33, 47);
+  color: white;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(26, 33, 47);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(220, 107, 38);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(193, 95, 35);
+}
+
+/* Button hover effects */
+.btn-primary {
+  @apply bg-primary text-white px-8 py-4 font-semibold rounded transition-all duration-300;
+}
+
+.btn-primary:hover {
+  @apply bg-primary-dark transform scale-105;
+  box-shadow: 0 10px 30px rgba(220, 107, 38, 0.3);
+}
+
+.btn-outline {
+  @apply border-2 border-cream text-cream px-8 py-4 font-semibold rounded transition-all duration-300 bg-transparent;
+}
+
+.btn-outline:hover {
+  @apply bg-cream text-dark transform scale-105;
+}
+
+/* Focus states for accessibility */
+a:focus,
+button:focus,
+input:focus {
+  outline: 2px solid rgb(220, 107, 38);
+  outline-offset: 2px;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: rgb(220, 107, 38);
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Hero video overlay */
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(26, 33, 47, 0.3) 0%, rgba(26, 33, 47, 0.8) 100%);
+}
+
+/* Image hover zoom */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.3s ease-out;
+}
+
+.img-zoom:hover img {
+  transform: scale(1.03);
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(26, 33, 47, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, rgb(220, 107, 38) 0%, rgb(245, 158, 91) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Form input styling */
+input, textarea, select {
+  @apply bg-dark-lighter border border-gray-600 rounded-lg px-4 py-3 w-full text-white placeholder-gray-400;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  @apply border-primary;
+  box-shadow: 0 0 0 3px rgba(220, 107, 38, 0.15);
+}
+
+/* Section spacing - reduced for mobile */
+section {
+  @apply py-12 sm:py-16 md:py-20;
+}
+
+/* Container max width */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile safe area for bottom CTA */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Safe area insets for iOS */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .mobile-cta-padding {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* High contrast mode for sunlight readability */
+.menu-light-bg {
+  background-color: #ede6df;
+}
+
+/* Menu item card shadow for depth */
+.menu-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.menu-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile-specific touch optimization */
+@media (max-width: 768px) {
+  /* Disable hover effects on touch */
+  .img-zoom:hover img {
+    transform: none;
+  }
+  
+  /* Larger tap targets */
+  a, button {
+    min-height: 44px;
+  }
+  
+  /* Bottom padding for fixed CTA bar */
+  .pb-mobile-cta {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* High contrast text for outdoor/sunlight viewing */
+@media (prefers-contrast: more) {
+  .menu-light-bg {
+    background-color: #fff;
+  }
+  
+  .text-gray-600 {
+    color: #374151 !important;
+  }
+}

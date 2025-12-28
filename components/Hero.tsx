@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { MapPin, Phone, ChevronDown, ExternalLink } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { LoadingScreen } from './LoadingScreen'
+import { PromoExperience } from './PromoExperience'
 
 const TOAST_ORDER_URL = 'https://order.toasttab.com/online/the-pier-driftwoods'
 
@@ -37,17 +38,21 @@ export function Hero() {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
   }
 
+
   return (
     <>
       {/* Premium Loading Screen with Video Intro */}
       <LoadingScreen onComplete={() => setShowContent(true)} />
 
-      <section 
+      {/* Cinematic Promo Experience */}
+      {showContent && <PromoExperience />}
+
+      <section
         ref={sectionRef}
         className="relative min-h-[100svh] flex items-center justify-center overflow-hidden"
       >
         {/* Full-bleed Background - Brick Wall Image like theirs */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 z-0"
           style={{ y: isMobile ? 0 : y }}
         >
@@ -57,16 +62,16 @@ export function Hero() {
             className="w-full h-full object-cover"
             loading="eager"
           />
-          
+
           {/* Dark Overlay for readability */}
           <div className="absolute inset-0 bg-dark/50" />
-          
+
           {/* Bottom gradient for seamless content blend */}
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-dark to-transparent" />
         </motion.div>
 
         {/* Content */}
-        <motion.div 
+        <motion.div
           className="relative z-10 container text-center px-4 py-16"
           style={{ opacity: isMobile ? 1 : opacity }}
           initial={{ opacity: 0 }}
@@ -130,7 +135,7 @@ export function Hero() {
               transition={{ duration: 0.4, delay: 0.4 }}
             >
               {/* Order Online - Primary */}
-              <a 
+              <a
                 href={TOAST_ORDER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -139,10 +144,10 @@ export function Hero() {
               >
                 Order Online
               </a>
-              
+
               {/* View Menu - Secondary */}
-              <Link 
-                href="/menu" 
+              <Link
+                href="/menu"
                 className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-cream font-semibold text-lg px-8 py-4 rounded-xl border-2 border-cream/50 hover:border-cream transition-all min-h-[56px] min-w-[180px] active:scale-[0.98]"
                 style={{ touchAction: 'manipulation' }}
               >
@@ -158,7 +163,7 @@ export function Hero() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2 text-cream/30 hover:text-cream/60 transition-colors hidden md:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: showContent ? 1 : 0, y: [0, 6, 0] }}
-          transition={{ 
+          transition={{
             opacity: { duration: 0.3, delay: 0.5 },
             y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' }
           }}

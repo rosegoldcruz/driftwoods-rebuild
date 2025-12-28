@@ -240,14 +240,14 @@ const menuCategories = [
 ]
 
 // Picture Menu Viewer Component with Zoom
-function PictureMenuViewer({ 
-  menu, 
-  isOpen, 
-  onClose 
-}: { 
+function PictureMenuViewer({
+  menu,
+  isOpen,
+  onClose
+}: {
   menu: typeof pictureMenus[0] | null
   isOpen: boolean
-  onClose: () => void 
+  onClose: () => void
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isZoomed, setIsZoomed] = useState(false)
@@ -314,7 +314,7 @@ function PictureMenuViewer({
           </div>
 
           {/* Image Container */}
-          <div 
+          <div
             className="flex-1 flex items-center justify-center p-4 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
@@ -353,11 +353,10 @@ function PictureMenuViewer({
                 <img
                   src={menu.images[currentImageIndex]}
                   alt={`${menu.name} - Page ${currentImageIndex + 1}`}
-                  className={`transition-transform duration-300 ${
-                    isZoomed 
-                      ? 'w-full h-full object-contain scale-150' 
+                  className={`transition-transform duration-300 ${isZoomed
+                      ? 'w-full h-full object-contain scale-150'
                       : 'max-w-full max-h-[75vh] object-contain'
-                  }`}
+                    }`}
                   style={isZoomed ? {
                     transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
                   } : undefined}
@@ -384,11 +383,10 @@ function PictureMenuViewer({
                       setCurrentImageIndex(idx)
                       setIsZoomed(false)
                     }}
-                    className={`relative w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 transition-all ${
-                      idx === currentImageIndex 
-                        ? 'border-amber-500 scale-105' 
+                    className={`relative w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 transition-all ${idx === currentImageIndex
+                        ? 'border-amber-500 scale-105'
                         : 'border-white/20 hover:border-white/40'
-                    }`}
+                      }`}
                   >
                     <img
                       src={img}
@@ -424,7 +422,7 @@ export default function MenuPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/videos/food-menu-hero.mp4" type="video/mp4" />
+          <source src="/videos/drinks-menu-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#0a1628]" />
         <div className="relative z-10 text-center px-4">
@@ -461,7 +459,7 @@ export default function MenuPage() {
           <p className="text-white/60 text-center mb-10 max-w-2xl mx-auto">
             Click any menu below to view full-size images with zoom functionality
           </p>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {pictureMenus.map((menu, idx) => (
               <motion.button
@@ -520,11 +518,10 @@ export default function MenuPage() {
                   setActiveCategory(cat.id)
                   document.getElementById(cat.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
                 }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
-                  activeCategory === cat.id
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === cat.id
                     ? 'bg-amber-500 text-white'
                     : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
-                }`}
+                  }`}
               >
                 {cat.name}
               </button>
@@ -567,13 +564,13 @@ export default function MenuPage() {
                   >
                     <div className="flex justify-between items-start gap-4">
                       <div className="flex-1">
-                        <h3 
+                        <h3
                           className="text-white font-semibold text-lg"
                           itemProp="name"
                         >
                           {item.name}
                         </h3>
-                        <p 
+                        <p
                           className="text-white/60 text-sm mt-1"
                           itemProp="description"
                         >
@@ -581,7 +578,7 @@ export default function MenuPage() {
                         </p>
                       </div>
                       {item.price && (
-                        <span 
+                        <span
                           className="text-amber-500 font-bold text-lg whitespace-nowrap"
                           itemProp="offers"
                           itemScope

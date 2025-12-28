@@ -14,10 +14,7 @@ export function AboutSection() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source
-            src="https://toastability-production.s3.amazonaws.com/mde1j4ezs7n337wamdy49u36yj7o"
-            type="video/mp4"
-          />
+          <source src="/videos/food-menu-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-dark/85" />
       </div>
@@ -33,17 +30,17 @@ export function AboutSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-cream mb-8">
             About <span className="text-primary">Driftwoods</span>
           </h2>
-          
+
           <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
-            Nestled in the heart of Sunnyslope, Driftwoods is more than just a bar and grill – 
-            it's a gathering place for the community. We bring the gastropub experience to your 
+            Nestled in the heart of Sunnyslope, Driftwoods is more than just a bar and grill –
+            it's a gathering place for the community. We bring the gastropub experience to your
             neighborhood with a menu that combines classic comfort food with creative culinary twists.
           </p>
 
           <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
-            Whether you're joining us for weekend brunch, a casual lunch, happy hour with friends, 
-            or a family dinner, we're committed to making every visit memorable. Our rotating 
-            craft beer selection, signature cocktails, and house-made dishes keep locals coming 
+            Whether you're joining us for weekend brunch, a casual lunch, happy hour with friends,
+            or a family dinner, we're committed to making every visit memorable. Our rotating
+            craft beer selection, signature cocktails, and house-made dishes keep locals coming
             back for more.
           </p>
 

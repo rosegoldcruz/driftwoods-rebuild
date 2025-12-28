@@ -354,8 +354,8 @@ function PictureMenuViewer({
                   src={menu.images[currentImageIndex]}
                   alt={`${menu.name} - Page ${currentImageIndex + 1}`}
                   className={`transition-transform duration-300 ${isZoomed
-                      ? 'w-full h-full object-contain scale-150'
-                      : 'max-w-full max-h-[75vh] object-contain'
+                    ? 'w-full h-full object-contain scale-150'
+                    : 'max-w-full max-h-[75vh] object-contain'
                     }`}
                   style={isZoomed ? {
                     transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
@@ -384,8 +384,8 @@ function PictureMenuViewer({
                       setIsZoomed(false)
                     }}
                     className={`relative w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 transition-all ${idx === currentImageIndex
-                        ? 'border-amber-500 scale-105'
-                        : 'border-white/20 hover:border-white/40'
+                      ? 'border-amber-500 scale-105'
+                      : 'border-white/20 hover:border-white/40'
                       }`}
                   >
                     <img
@@ -519,8 +519,8 @@ export default function MenuPage() {
                   document.getElementById(cat.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
                 }}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === cat.id
-                    ? 'bg-amber-500 text-white'
-                    : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
+                  ? 'bg-amber-500 text-white'
+                  : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
                   }`}
               >
                 {cat.name}

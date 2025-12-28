@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { MapPin, Phone, ChevronDown, ExternalLink } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { LoadingScreen } from './LoadingScreen'
-import { PromoExperience } from './PromoExperience'
 
 const TOAST_ORDER_URL = 'https://order.toasttab.com/online/the-pier-driftwoods'
 
@@ -38,14 +37,10 @@ export function Hero() {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
   }
 
-
   return (
     <>
       {/* Premium Loading Screen with Video Intro */}
       <LoadingScreen onComplete={() => setShowContent(true)} />
-
-      {/* Cinematic Promo Experience */}
-      {showContent && <PromoExperience />}
 
       <section
         ref={sectionRef}

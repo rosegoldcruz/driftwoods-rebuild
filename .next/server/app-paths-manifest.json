@@ -1,4 +1,11 @@
 {
+  "/_not-found": "app/_not-found.js",
+  "/order/page": "app/order/page.js",
+  "/privacy/page": "app/privacy/page.js",
   "/page": "app/page.js",
-  "/menu/page": "app/menu/page.js"
+  "/terms/page": "app/terms/page.js",
+  "/about/page": "app/about/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/menu/page": "app/menu/page.js",
+  "/careers/page": "app/careers/page.js"
 }

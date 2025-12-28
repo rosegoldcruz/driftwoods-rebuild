@@ -50,7 +50,7 @@ export function LoadingScreen({ onComplete, skipEnabled = true }: LoadingScreenP
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-dark"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black h-[100dvh]"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
@@ -62,7 +62,7 @@ export function LoadingScreen({ onComplete, skipEnabled = true }: LoadingScreenP
             muted
             playsInline
             onEnded={handleVideoEnd}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
             poster="https://cdn.ing/assets/i/r/221699/variants/5dhf6lc2vge1c8e4r8qqe0qibxt3/ffa771bd373b30a1a63111797ef5dd88627acefa289ede100f7c545462724c63/neon-desktop-enh.webp"
           >
             <source src="/videos/load-screen.mp4" type="video/mp4" />

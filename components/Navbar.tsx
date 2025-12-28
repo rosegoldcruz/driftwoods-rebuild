@@ -26,14 +26,17 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-dark/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-dark/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'
+        }`}
     >
       <nav className="container flex items-center justify-between" role="navigation" aria-label="Main navigation">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2" aria-label="Driftwoods Home">
-          <span className="text-2xl md:text-3xl font-bold text-primary">Driftwoods</span>
+          <img
+            src="/Neon sign.webp"
+            alt="Driftwoods"
+            className="h-10 md:h-14 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -76,9 +79,8 @@ export function Navbar() {
         {/* Mobile Menu */}
         <div
           id="mobile-menu"
-          className={`absolute top-full left-0 right-0 bg-dark/98 backdrop-blur-lg md:hidden transition-all duration-300 ${
-            isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-          }`}
+          className={`absolute top-full left-0 right-0 bg-dark/98 backdrop-blur-lg md:hidden transition-all duration-300 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+            }`}
         >
           <ul className="flex flex-col p-6 gap-4" role="menu">
             {navLinks.map((link) => (

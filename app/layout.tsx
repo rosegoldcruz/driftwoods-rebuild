@@ -4,7 +4,7 @@ import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { MobileCTA } from '@/components/MobileCTA'
 import { SmoothScroll } from '@/components/SmoothScroll'
-import { IntroGate } from '@/components/IntroGate'
+import IntroGate from '@/components/IntroGate'
 import Script from 'next/script'
 
 export const viewport: Viewport = {

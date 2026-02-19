@@ -24,7 +24,7 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-cream mb-6">
-              About <span className="text-primary">Driftwoods</span>
+              About <span className="text-primary neon-word">Driftwoods</span>
             </h1>
             <p className="text-xl md:text-2xl text-cream/90 leading-relaxed max-w-3xl mx-auto">
               At Driftwoods, we invite you to embark on a culinary journey that combines the warmth of a neighborhood bar with the sophistication of an upscale American gastropub.
@@ -33,7 +33,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden py-20 lg:py-28 desktop-atmosphere">
+      <section className="relative overflow-hidden py-20 lg:py-28 desktop-atmosphere lg:-mt-10">
+        <div className="decorative-line-art deco-beer hidden lg:block w-[250px] h-[250px] left-[-65px] top-[20%]" aria-hidden="true" />
         <div
           className="absolute inset-0"
           style={{

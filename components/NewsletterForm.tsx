@@ -19,25 +19,21 @@ export function NewsletterForm() {
     e.preventDefault()
     setFormState('loading')
 
-    // Store submission locally (for later CRM integration)
     try {
       const submissions = JSON.parse(localStorage.getItem('driftwoods_newsletter_submissions') || '[]')
       submissions.push({
         ...formData,
         timestamp: new Date().toISOString(),
-        source: 'website_newsletter'
+        source: 'website_newsletter',
       })
       localStorage.setItem('driftwoods_newsletter_submissions', JSON.stringify(submissions))
-      
-      // Simulate small delay for UX
+
       await new Promise((resolve) => setTimeout(resolve, 800))
-      
+
       setFormState('success')
       setFormData({ firstName: '', lastName: '', email: '', phone: '' })
-      
-      // Reset after 5 seconds
       setTimeout(() => setFormState('idle'), 5000)
-    } catch (error) {
+    } catch {
       setFormState('error')
       setTimeout(() => setFormState('idle'), 3000)
     }
@@ -51,7 +47,9 @@ export function NewsletterForm() {
   }
 
   return (
-    <section className="py-20 bg-cream" id="newsletter">
+    <section className="relative py-20 bg-dark-lighter desktop-atmosphere" id="newsletter">
+      <div className="decorative-line-art deco-beer hidden lg:block w-[260px] h-[260px] right-[-80px] bottom-[8%]" aria-hidden="true" />
+
       <div className="container">
         <motion.div
           className="max-w-2xl mx-auto text-center"
@@ -60,16 +58,16 @@ export function NewsletterForm() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
-            Stay in the Loop
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-cream mb-4 desktop-heading-glow">
+            Stay in the <span className="neon-word">Loop</span>
           </h2>
-          <p className="text-dark/70 mb-8">
+          <p className="text-cream/75 mb-8">
             Sign up for our newsletter to receive updates on specials, events, and exclusive offers.
           </p>
 
           {formState === 'success' ? (
             <motion.div
-              className="bg-green-100 text-green-800 rounded-lg p-6 flex items-center justify-center gap-3"
+              className="premium-card bg-green-500/15 text-green-200 rounded-lg p-6 flex items-center justify-center gap-3"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
             >
@@ -78,7 +76,7 @@ export function NewsletterForm() {
             </motion.div>
           ) : formState === 'error' ? (
             <motion.div
-              className="bg-red-100 text-red-800 rounded-lg p-6 flex items-center justify-center gap-3"
+              className="premium-card bg-red-500/15 text-red-200 rounded-lg p-6 flex items-center justify-center gap-3"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
             >
@@ -86,7 +84,7 @@ export function NewsletterForm() {
               <span>Something went wrong. Please try again.</span>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 premium-card bg-dark/55 backdrop-blur-sm rounded-2xl p-6 lg:p-8">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="firstName" className="sr-only">
@@ -100,7 +98,7 @@ export function NewsletterForm() {
                     required
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-dark/20 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white text-dark placeholder:text-dark/50"
+                    className="w-full px-4 py-3 rounded-lg border border-white/15 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-dark-lighter text-cream placeholder:text-cream/50"
                   />
                 </div>
                 <div>
@@ -114,7 +112,7 @@ export function NewsletterForm() {
                     placeholder="Last Name"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-dark/20 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white text-dark placeholder:text-dark/50"
+                    className="w-full px-4 py-3 rounded-lg border border-white/15 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-dark-lighter text-cream placeholder:text-cream/50"
                   />
                 </div>
               </div>
@@ -132,7 +130,7 @@ export function NewsletterForm() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-dark/20 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white text-dark placeholder:text-dark/50"
+                    className="w-full px-4 py-3 rounded-lg border border-white/15 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-dark-lighter text-cream placeholder:text-cream/50"
                   />
                 </div>
                 <div>
@@ -146,7 +144,7 @@ export function NewsletterForm() {
                     placeholder="Phone Number"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-dark/20 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white text-dark placeholder:text-dark/50"
+                    className="w-full px-4 py-3 rounded-lg border border-white/15 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-dark-lighter text-cream placeholder:text-cream/50"
                   />
                 </div>
               </div>
@@ -169,9 +167,7 @@ export function NewsletterForm() {
                 )}
               </button>
 
-              <p className="text-sm text-dark/50 mt-4">
-                We respect your privacy. Unsubscribe at any time.
-              </p>
+              <p className="text-sm text-cream/55 mt-4">We respect your privacy. Unsubscribe at any time.</p>
             </form>
           )}
         </motion.div>

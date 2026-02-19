@@ -5,22 +5,14 @@ import { motion } from 'framer-motion'
 export function AboutSection() {
   return (
     <section className="relative py-24 overflow-hidden desktop-atmosphere" id="about">
-      {/* Video Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source
-            src="/videos/food-menu-hero.mp4"
-            type="video/mp4"
-          />
+        <video autoPlay muted loop playsInline className="w-full h-full object-cover">
+          <source src="/videos/food-menu-hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-dark/85" />
       </div>
+
+      <div className="decorative-line-art deco-fork hidden lg:block w-[260px] h-[260px] right-[-70px] top-[18%]" aria-hidden="true" />
 
       <div className="container relative z-10">
         <motion.div
@@ -31,20 +23,15 @@ export function AboutSection() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-cream mb-8 desktop-heading-glow">
-            About <span className="text-primary">Driftwoods</span>
+            About <span className="text-primary neon-word">Driftwoods</span>
           </h2>
 
           <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
-            Nestled in the heart of Sunnyslope, Driftwoods is more than just a bar and grill –
-            it's a gathering place for the community. We bring the gastropub experience to your
-            neighborhood with a menu that combines classic comfort food with creative culinary twists.
+            Nestled in the heart of Sunnyslope, Driftwoods is more than just a bar and grill – it's a gathering place for the community. We bring the gastropub experience to your neighborhood with a menu that combines classic comfort food with creative culinary twists.
           </p>
 
           <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
-            Whether you're joining us for weekend brunch, a casual lunch, happy hour with friends,
-            or a family dinner, we're committed to making every visit memorable. Our rotating
-            craft beer selection, signature cocktails, and house-made dishes keep locals coming
-            back for more.
+            Whether you're joining us for weekend brunch, a casual lunch, happy hour with friends, or a family dinner, we're committed to making every visit memorable. Our rotating craft beer selection, signature cocktails, and house-made dishes keep locals coming back for more.
           </p>
 
           <motion.div

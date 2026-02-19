@@ -188,6 +188,19 @@ section {
 }
 
 @media (min-width: 1024px) {
+  @keyframes neon-drift {
+    0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.5; }
+    50% { transform: translate3d(2%, -1%, 0) scale(1.03); opacity: 0.8; }
+    100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.5; }
+  }
+
+  @keyframes laser-sweep {
+    0% { transform: translateX(-120%) skewX(-12deg); opacity: 0; }
+    20% { opacity: 0.22; }
+    65% { opacity: 0.1; }
+    100% { transform: translateX(180%) skewX(-12deg); opacity: 0; }
+  }
+
   .desktop-atmosphere {
     position: relative;
     isolation: isolate;
@@ -220,6 +233,71 @@ section {
     z-index: 1;
   }
 
+  .desktop-neon-stage {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .desktop-neon-stage::before {
+    content: '';
+    position: absolute;
+    inset: -8% -4%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(52% 34% at 16% 10%, rgba(224, 122, 47, 0.2), transparent 76%),
+      radial-gradient(46% 34% at 88% 12%, rgba(224, 122, 47, 0.12), transparent 72%),
+      radial-gradient(68% 52% at 50% 88%, rgba(245, 158, 91, 0.08), transparent 72%);
+    animation: neon-drift 12s ease-in-out infinite;
+  }
+
+  .desktop-neon-stage::after {
+    content: '';
+    position: absolute;
+    top: -22%;
+    bottom: -22%;
+    width: 22%;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      rgba(224, 122, 47, 0) 0%,
+      rgba(224, 122, 47, 0.12) 45%,
+      rgba(224, 122, 47, 0) 100%
+    );
+    filter: blur(8px);
+    animation: laser-sweep 7.5s ease-in-out infinite;
+  }
+
+  .desktop-neon-stage > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .glass-card-pro {
+    background: linear-gradient(145deg, rgba(14, 24, 40, 0.7), rgba(11, 19, 33, 0.48));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 52px rgba(2, 8, 20, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+  }
+
+  .glow-icon-chip {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(224, 122, 47, 0.28);
+    box-shadow: 0 0 0 1px rgba(224, 122, 47, 0.08), 0 10px 24px rgba(224, 122, 47, 0.2);
+  }
+
+  .glow-icon-chip::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.22), transparent 60%);
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
   .desktop-divider-fade {
     position: relative;
   }
@@ -238,6 +316,7 @@ section {
 
   .desktop-heading-glow {
     position: relative;
+    display: inline-block;
   }
 
   .desktop-heading-glow::before {
@@ -251,6 +330,24 @@ section {
     background: radial-gradient(circle, rgba(220, 107, 38, 0.22) 0%, rgba(220, 107, 38, 0) 72%);
     pointer-events: none;
     z-index: -1;
+  }
+
+  .desktop-heading-glow::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -12px;
+    width: 88px;
+    height: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, rgba(220, 107, 38, 0.05), rgba(220, 107, 38, 0.9), rgba(220, 107, 38, 0.05));
+    box-shadow: 0 0 10px rgba(220, 107, 38, 0.35);
+    border-radius: 999px;
+  }
+
+  .neon-word {
+    color: rgb(245, 158, 91);
+    text-shadow: 0 0 8px rgba(220, 107, 38, 0.4);
   }
 
   .premium-card {
@@ -267,6 +364,28 @@ section {
 
   h2 {
     letter-spacing: -0.02em;
+  }
+
+  .decorative-line-art {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.07;
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.25));
+    z-index: 0;
+  }
+
+  .deco-burger {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23f5b476' stroke-width='4'%3E%3Cpath d='M32 90c9-28 34-45 78-45s69 17 78 45'/%3E%3Cpath d='M24 108h172'/%3E%3Cpath d='M28 142h164c0 23-18 34-35 34H63c-17 0-35-11-35-34z'/%3E%3Cpath d='M42 126h136'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .deco-beer {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23f5b476' stroke-width='4'%3E%3Crect x='56' y='40' width='84' height='132' rx='16'/%3E%3Cpath d='M140 72h16c15 0 25 10 25 24s-10 24-25 24h-16'/%3E%3Cpath d='M72 64v84M92 64v84M112 64v84'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .deco-fork {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23f5b476' stroke-width='4'%3E%3Cpath d='M66 30v62M82 30v62M98 30v62M82 92v98'/%3E%3Cpath d='M142 30c22 28 22 67 0 94v66'/%3E%3C/g%3E%3C/svg%3E");
   }
 }
 

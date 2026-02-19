@@ -66,7 +66,7 @@ export function Hero() {
     <>
       <LoadingScreen isReady={isReady} onComplete={() => setShowContent(true)} />
 
-      <section ref={sectionRef} className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+      <section ref={sectionRef} className="relative min-h-[100svh] flex items-center justify-center overflow-hidden desktop-neon-stage">
         <motion.div className="absolute inset-0 z-0" style={{ y: isMobile ? 0 : y }}>
           <img
             src="https://cdn.ing/assets/i/r/143988/ue3nwb6bsmjre17n396ofy1dvivs/wall.webp"
@@ -76,6 +76,7 @@ export function Hero() {
           />
 
           <div className="absolute inset-0 bg-dark/50" />
+          <div className="absolute inset-0 hidden lg:block bg-[radial-gradient(circle_at_50%_35%,rgba(224,122,47,0.18),transparent_60%)]" aria-hidden="true" />
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-dark to-transparent" />
         </motion.div>
 
@@ -141,7 +142,7 @@ export function Hero() {
                 href={TOAST_ORDER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all min-h-[56px] min-w-[180px] active:scale-[0.98] shadow-lg shadow-primary/30 border-2 border-primary"
+                className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all min-h-[56px] min-w-[180px] active:scale-[0.98] shadow-lg shadow-primary/30 border-2 border-primary lg:hover:shadow-[0_0_24px_rgba(224,122,47,0.45)]"
                 style={{ touchAction: 'manipulation' }}
               >
                 Order Online

@@ -5,18 +5,18 @@ import { motion } from 'framer-motion'
 
 const testimonials = [
   {
-    text: "Best fish and chips in Phoenix! The atmosphere is exactly what Sunnyslope needed.",
-    author: "Michael R.",
+    text: 'Best fish and chips in Phoenix! The atmosphere is exactly what Sunnyslope needed.',
+    author: 'Michael R.',
     rating: 5,
   },
   {
-    text: "Our go-to spot for weekend brunch. The staff remembers our names and the food is consistently amazing.",
-    author: "Sarah K.",
+    text: 'Our go-to spot for weekend brunch. The staff remembers our names and the food is consistently amazing.',
+    author: 'Sarah K.',
     rating: 5,
   },
   {
-    text: "Finally, a real gastropub in the neighborhood. Great craft beer selection and the burgers are incredible.",
-    author: "David L.",
+    text: 'Finally, a real gastropub in the neighborhood. Great craft beer selection and the burgers are incredible.',
+    author: 'David L.',
     rating: 5,
   },
 ]
@@ -41,9 +41,10 @@ const localInfo = [
 
 export function TrustSection() {
   return (
-    <section className="py-20 bg-dark desktop-atmosphere" id="trust">
+    <section className="relative py-20 bg-dark desktop-atmosphere" id="trust">
+      <div className="decorative-line-art deco-burger hidden lg:block w-[320px] h-[320px] left-[-85px] top-[18%]" aria-hidden="true" />
+
       <div className="container">
-        {/* Google Rating Banner */}
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -62,7 +63,6 @@ export function TrustSection() {
           </div>
         </motion.div>
 
-        {/* Testimonials */}
         <div className="grid md:grid-cols-3 gap-6 mb-16">
           {testimonials.map((testimonial, index) => (
             <motion.div
@@ -79,13 +79,12 @@ export function TrustSection() {
                   <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <p className="text-gray-300 mb-4 leading-relaxed">"{testimonial.text}"</p>
+              <p className="text-gray-300 mb-4 leading-relaxed">&quot;{testimonial.text}&quot;</p>
               <p className="text-cream font-medium">— {testimonial.author}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* Local Info */}
         <div className="grid sm:grid-cols-3 gap-6">
           {localInfo.map((info, index) => (
             <motion.div

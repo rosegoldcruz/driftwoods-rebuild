@@ -430,7 +430,7 @@ export default function MenuPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-4"
+            className="text-5xl md:text-7xl font-bold text-white mb-4 desktop-heading-glow"
           >
             Our Menu
           </motion.h1>

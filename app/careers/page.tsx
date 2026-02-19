@@ -79,7 +79,8 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-20 lg:py-28 overflow-hidden lg:-mt-10">
+        <div className="decorative-line-art deco-burger hidden lg:block w-[310px] h-[310px] right-[-90px] top-[8%]" aria-hidden="true" />
         <div
           className="absolute inset-0"
           style={{

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export function AboutSection() {
   return (
-    <section className="relative py-24 overflow-hidden desktop-atmosphere" id="about">
+    <section className="relative py-24 overflow-hidden desktop-atmosphere desktop-neon-stage" id="about">
       <div className="absolute inset-0 z-0">
         <video autoPlay muted loop playsInline className="w-full h-full object-cover">
           <source src="/videos/food-menu-hero.mp4" type="video/mp4" />
@@ -41,15 +41,15 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div className="text-center">
+            <div className="text-center glass-card-pro rounded-xl px-6 py-4 premium-card min-w-[150px]">
               <div className="text-4xl font-bold text-primary mb-2">2018</div>
               <div className="text-cream/70 text-sm uppercase tracking-wider">Established</div>
             </div>
-            <div className="text-center">
+            <div className="text-center glass-card-pro rounded-xl px-6 py-4 premium-card min-w-[150px]">
               <div className="text-4xl font-bold text-primary mb-2">50+</div>
               <div className="text-cream/70 text-sm uppercase tracking-wider">Menu Items</div>
             </div>
-            <div className="text-center">
+            <div className="text-center glass-card-pro rounded-xl px-6 py-4 premium-card min-w-[150px]">
               <div className="text-4xl font-bold text-primary mb-2">16</div>
               <div className="text-cream/70 text-sm uppercase tracking-wider">Craft Taps</div>
             </div>

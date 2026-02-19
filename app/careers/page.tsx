@@ -101,7 +101,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section className="relative py-20 bg-cream desktop-atmosphere">
+      <section className="relative py-20 bg-dark desktop-atmosphere desktop-neon-stage">
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-dark to-transparent opacity-70 pointer-events-none" aria-hidden="true" />
         <div className="container">
           <motion.div
@@ -110,8 +110,8 @@ export default function CareersPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4 desktop-heading-glow">Why Work at Driftwoods?</h2>
-            <p className="text-dark/70 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-cream mb-4 desktop-heading-glow">Why Work at Driftwoods?</h2>
+            <p className="text-cream/75 max-w-2xl mx-auto">
               We're more than a workplace — we're a community. Join a team that values hard work, creativity, and having fun while delivering great experiences.
             </p>
           </motion.div>
@@ -120,17 +120,17 @@ export default function CareersPage() {
             {benefits.map((benefit, index) => (
               <motion.div
                 key={benefit.title}
-                className="bg-white p-6 rounded-xl premium-card"
+                className="glass-card-pro p-6 rounded-xl premium-card"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <div className="p-3 bg-primary/10 rounded-xl w-fit mb-4">
+                <div className="p-3 bg-primary/10 rounded-xl w-fit mb-4 glow-icon-chip">
                   <benefit.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-lg font-semibold text-dark mb-2">{benefit.title}</h3>
-                <p className="text-dark/70 text-sm">{benefit.description}</p>
+                <h3 className="text-lg font-semibold text-cream mb-2">{benefit.title}</h3>
+                <p className="text-cream/70 text-sm">{benefit.description}</p>
               </motion.div>
             ))}
           </div>

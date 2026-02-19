@@ -412,7 +412,7 @@ export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState('starters')
 
   return (
-    <main className="min-h-screen bg-[#0a1628] desktop-atmosphere">
+    <main className="min-h-screen bg-[#0a1628] desktop-atmosphere desktop-neon-stage">
       {/* Hero Section */}
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden desktop-divider-fade">
         <video
@@ -446,7 +446,7 @@ export default function MenuPage() {
       </section>
 
       {/* Picture Menu Cards */}
-      <section className="py-16 px-4 desktop-atmosphere">
+      <section className="py-16 px-4 desktop-atmosphere desktop-neon-stage">
         <div className="container">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -471,7 +471,7 @@ export default function MenuPage() {
                 onClick={() => setSelectedPictureMenu(menu)}
                 className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-amber-500/50 transition-all duration-300 hover:scale-105 text-left premium-card"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform glow-icon-chip">
                   <menu.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-white font-semibold text-lg mb-1">{menu.name}</h3>
@@ -486,7 +486,7 @@ export default function MenuPage() {
       </section>
 
       {/* Order Online CTA */}
-      <section className="py-8 px-4 desktop-atmosphere">
+      <section className="py-8 px-4 desktop-atmosphere desktop-neon-stage">
         <div className="container max-w-4xl">
           <motion.a
             href="https://order.toasttab.com/online/the-pier-driftwoods"
@@ -495,7 +495,7 @@ export default function MenuPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="block bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl p-8 text-center hover:scale-[1.02] transition-transform"
+            className="block bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl p-8 text-center hover:scale-[1.02] transition-transform premium-card lg:hover:shadow-[0_0_28px_rgba(224,122,47,0.42)]"
           >
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
               Order Online Now
@@ -508,7 +508,7 @@ export default function MenuPage() {
       </section>
 
       {/* Category Navigation */}
-      <section className="sticky top-16 z-30 bg-[#0a1628]/95 backdrop-blur-md border-y border-white/10 py-4">
+      <section className="sticky top-16 z-30 bg-[#0a1628]/90 backdrop-blur-md border-y border-white/10 py-4 desktop-neon-stage">
         <div className="container overflow-x-auto scrollbar-hide">
           <div className="flex gap-2 min-w-max">
             {menuCategories.map((cat) => (
@@ -519,7 +519,7 @@ export default function MenuPage() {
                   document.getElementById(cat.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
                 }}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${activeCategory === cat.id
-                  ? 'bg-amber-500 text-white'
+                  ? 'bg-amber-500 text-white shadow-[0_0_14px_rgba(224,122,47,0.45)]'
                   : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
                   }`}
               >
@@ -531,7 +531,7 @@ export default function MenuPage() {
       </section>
 
       {/* Menu Categories */}
-      <section className="relative py-16 px-4 overflow-hidden desktop-atmosphere">
+      <section className="relative py-16 px-4 overflow-hidden desktop-atmosphere desktop-neon-stage">
         <div className="absolute inset-0 hidden lg:block" style={{ backgroundImage: "linear-gradient(180deg, rgba(10,22,40,0.65) 0%, rgba(10,22,40,0.9) 100%), url('https://cdn.ing/assets/i/r/285213/5zggi7whevnjowisv0iko7t1ay8m/spaghetti-alle-vongole-seafood-pasta-with-clams-in-bowl.jpg')", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.28 }} aria-hidden="true" />
         <div className="container relative z-10 space-y-20">
           {menuCategories.map((category, catIdx) => (
@@ -598,7 +598,7 @@ export default function MenuPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 px-4 bg-gradient-to-t from-black/50 to-transparent desktop-atmosphere">
+      <section className="py-20 px-4 bg-gradient-to-t from-black/50 to-transparent desktop-atmosphere desktop-neon-stage">
         <div className="container max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 desktop-heading-glow">
             Ready to Order?

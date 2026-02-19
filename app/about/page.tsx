@@ -90,11 +90,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative py-20 bg-cream desktop-atmosphere">
+      <section className="relative py-20 bg-dark desktop-atmosphere desktop-neon-stage">
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-dark-lighter to-transparent opacity-70 pointer-events-none" aria-hidden="true" />
         <div className="container">
           <motion.h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-dark text-center mb-12 desktop-heading-glow"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-cream text-center mb-12 desktop-heading-glow"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -125,15 +125,15 @@ export default function AboutPage() {
             ].map((value, index) => (
               <motion.div
                 key={value.title}
-                className="bg-white p-8 rounded-2xl premium-card"
+                className="glass-card-pro p-8 rounded-2xl premium-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <span className="text-4xl mb-4 block">{value.icon}</span>
-                <h3 className="text-xl font-bold text-dark mb-4">{value.title}</h3>
-                <p className="text-dark/70">{value.description}</p>
+                <h3 className="text-xl font-bold text-cream mb-4">{value.title}</h3>
+                <p className="text-cream/75">{value.description}</p>
               </motion.div>
             ))}
           </div>

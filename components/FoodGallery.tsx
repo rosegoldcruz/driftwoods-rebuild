@@ -51,7 +51,8 @@ export function FoodGallery() {
   }, [selectedImage])
 
   return (
-    <section className="py-16 sm:py-20 bg-dark-lighter" id="gallery">
+    <section className="relative py-16 sm:py-20 bg-dark-lighter desktop-atmosphere desktop-neon-stage" id="gallery">
+      <div className="decorative-line-art deco-fork hidden lg:block w-[300px] h-[300px] left-[-75px] bottom-[10%]" aria-hidden="true" />
       <div className="container">
         <motion.div
           className="text-center mb-10"
@@ -79,7 +80,7 @@ export function FoodGallery() {
           {galleryImages.map((image, index) => (
             <motion.button
               key={index}
-              className={`relative rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer ${image.span}`}
+              className={`relative rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer premium-card ${image.span}`}
               onClick={() => setSelectedImage(index)}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}

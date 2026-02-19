@@ -41,7 +41,7 @@ const localInfo = [
 
 export function TrustSection() {
   return (
-    <section className="relative py-20 bg-dark desktop-atmosphere" id="trust">
+    <section className="relative py-20 bg-dark desktop-atmosphere desktop-neon-stage" id="trust">
       <div className="decorative-line-art deco-burger hidden lg:block w-[320px] h-[320px] left-[-85px] top-[18%]" aria-hidden="true" />
 
       <div className="container">
@@ -58,7 +58,7 @@ export function TrustSection() {
             ))}
           </div>
           <div className="text-center sm:text-left">
-            <span className="text-2xl lg:text-3xl font-bold text-cream">4.7</span>
+            <span className="text-2xl lg:text-3xl font-bold text-cream neon-word">4.7</span>
             <span className="text-gray-400 ml-2">on Google · 280+ reviews</span>
           </div>
         </motion.div>
@@ -95,7 +95,7 @@ export function TrustSection() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.2, delay: index * 0.08 }}
             >
-              <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0">
+              <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0 glow-icon-chip">
                 <info.icon className="w-5 h-5 text-primary" />
               </div>
               <div>

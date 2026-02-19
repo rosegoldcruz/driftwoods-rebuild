@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { MapPin, Phone, ChevronDown, ExternalLink } from 'lucide-react'
+import { MapPin, ChevronDown } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { LoadingScreen } from './LoadingScreen'
 
@@ -12,16 +12,41 @@ export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isMobile, setIsMobile] = useState(false)
   const [showContent, setShowContent] = useState(false)
+  const [isReady, setIsReady] = useState(false)
 
-  // Check if intro already seen
   useEffect(() => {
-    const hasSeenIntro = sessionStorage.getItem('driftwoods_intro_seen')
-    if (hasSeenIntro) {
-      setShowContent(true)
+    let isCancelled = false
+
+    const preloadTargets = [
+      'https://cdn.ing/assets/i/r/143988/ue3nwb6bsmjre17n396ofy1dvivs/wall.webp',
+      'https://toastability-production.s3.amazonaws.com/l5upmfajdxr8g1f083zaqoj64tgb',
+    ]
+
+    let loadedCount = 0
+    const markLoaded = () => {
+      loadedCount += 1
+      if (!isCancelled && loadedCount >= preloadTargets.length) {
+        setIsReady(true)
+      }
+    }
+
+    preloadTargets.forEach((src) => {
+      const img = new Image()
+      img.onload = markLoaded
+      img.onerror = markLoaded
+      img.src = src
+    })
+
+    const fallbackTimer = setTimeout(() => {
+      if (!isCancelled) setIsReady(true)
+    }, 1200)
+
+    return () => {
+      isCancelled = true
+      clearTimeout(fallbackTimer)
     }
   }, [])
 
-  // Gentle parallax effect on scroll - disabled on mobile
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 100])
   const opacity = useTransform(scrollY, [0, 350], [1, 0])
@@ -39,18 +64,10 @@ export function Hero() {
 
   return (
     <>
-      {/* Premium Loading Screen with Video Intro */}
-      <LoadingScreen onComplete={() => setShowContent(true)} />
+      <LoadingScreen isReady={isReady} onComplete={() => setShowContent(true)} />
 
-      <section
-        ref={sectionRef}
-        className="relative min-h-[100svh] flex items-center justify-center overflow-hidden"
-      >
-        {/* Full-bleed Background - Brick Wall Image like theirs */}
-        <motion.div
-          className="absolute inset-0 z-0"
-          style={{ y: isMobile ? 0 : y }}
-        >
+      <section ref={sectionRef} className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+        <motion.div className="absolute inset-0 z-0" style={{ y: isMobile ? 0 : y }}>
           <img
             src="https://cdn.ing/assets/i/r/143988/ue3nwb6bsmjre17n396ofy1dvivs/wall.webp"
             alt=""
@@ -58,14 +75,10 @@ export function Hero() {
             loading="eager"
           />
 
-          {/* Dark Overlay for readability */}
           <div className="absolute inset-0 bg-dark/50" />
-
-          {/* Bottom gradient for seamless content blend */}
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-dark to-transparent" />
         </motion.div>
 
-        {/* Content */}
         <motion.div
           className="relative z-10 container text-center px-4 py-16"
           style={{ opacity: isMobile ? 1 : opacity }}
@@ -74,7 +87,6 @@ export function Hero() {
           transition={{ duration: 0.5 }}
         >
           <div className="max-w-3xl mx-auto">
-            {/* Logo - Large and Premium */}
             <motion.img
               src="https://toastability-production.s3.amazonaws.com/l5upmfajdxr8g1f083zaqoj64tgb"
               alt="Driftwoods Bar & Grill"
@@ -85,7 +97,6 @@ export function Hero() {
               transition={{ duration: 0.4, delay: 0.1 }}
             />
 
-            {/* Tagline */}
             <motion.h1
               className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-cream font-light mb-8 tracking-wide"
               initial={{ opacity: 0, y: 15 }}
@@ -95,7 +106,6 @@ export function Hero() {
               Your Neighborhood Bar & Grill Experience
             </motion.h1>
 
-            {/* Hours Display - Clean and Clear */}
             <motion.div
               className="text-cream/90 text-sm sm:text-base space-y-1 mb-8"
               initial={{ opacity: 0 }}
@@ -108,7 +118,6 @@ export function Hero() {
               <p>Sunday: 8:00 AM - 10:00 PM</p>
             </motion.div>
 
-            {/* Address Link */}
             <motion.a
               href="https://www.google.com/maps/place/9832+N+7th+St,+Phoenix,+AZ+85020"
               target="_blank"
@@ -122,14 +131,12 @@ export function Hero() {
               9832 N. 7th St. Phoenix, AZ. 85020
             </motion.a>
 
-            {/* Primary CTAs - Large 48px+ tap targets */}
             <motion.div
               className="flex flex-col sm:flex-row justify-center gap-4"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 15 }}
               transition={{ duration: 0.4, delay: 0.4 }}
             >
-              {/* Order Online - Primary */}
               <a
                 href={TOAST_ORDER_URL}
                 target="_blank"
@@ -140,7 +147,6 @@ export function Hero() {
                 Order Online
               </a>
 
-              {/* View Menu - Secondary */}
               <Link
                 href="/menu"
                 className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-cream font-semibold text-lg px-8 py-4 rounded-xl border-2 border-cream/50 hover:border-cream transition-all min-h-[56px] min-w-[180px] active:scale-[0.98]"
@@ -152,15 +158,15 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Scroll Indicator */}
         <motion.button
+          type="button"
           onClick={scrollToContent}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 text-cream/30 hover:text-cream/60 transition-colors hidden md:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: showContent ? 1 : 0, y: [0, 6, 0] }}
           transition={{
             opacity: { duration: 0.3, delay: 0.5 },
-            y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' }
+            y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
           }}
           aria-label="Scroll to content"
         >

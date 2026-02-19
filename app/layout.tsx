@@ -182,9 +182,9 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-dark text-cream">
         <SmoothScroll>
-          <a href="#main-content" className="skip-link">Skip to main content</a>
+          <a href="#main" className="skip-link">Skip to main content</a>
           <Navbar />
-          <main id="main-content">
+          <main id="main">
             {children}
           </main>
           <Footer />

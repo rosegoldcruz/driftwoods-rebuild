@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export function AboutSection() {
   return (
-    <section className="relative py-24 overflow-hidden" id="about">
+    <section className="relative py-24 overflow-hidden desktop-atmosphere" id="about">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -30,7 +30,7 @@ export function AboutSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-cream mb-8">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-cream mb-8 desktop-heading-glow">
             About <span className="text-primary">Driftwoods</span>
           </h2>
 

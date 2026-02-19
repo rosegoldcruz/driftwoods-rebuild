@@ -9,31 +9,28 @@ interface LoadingScreenProps {
 }
 
 export function LoadingScreen({ isReady, onComplete }: LoadingScreenProps) {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const didCompleteRef = useRef(false)
 
   useEffect(() => {
+    const startedAt = Date.now()
+    const minVisibleMs = 1200
+
     const complete = () => {
       if (didCompleteRef.current) return
       didCompleteRef.current = true
-      setIsVisible(false)
-      onComplete?.()
+      const elapsed = Date.now() - startedAt
+      const remaining = Math.max(0, minVisibleMs - elapsed)
+      window.setTimeout(() => {
+        setIsVisible(false)
+        onComplete?.()
+      }, remaining)
     }
 
-    const showTimer = setTimeout(() => {
-      if (!isReady) setIsVisible(true)
-    }, 300)
-
-    const maxTimer = setTimeout(() => {
-      complete()
-    }, 1500)
-
-    if (isReady) {
-      complete()
-    }
+    const maxTimer = setTimeout(complete, 1500)
+    if (isReady) complete()
 
     return () => {
-      clearTimeout(showTimer)
       clearTimeout(maxTimer)
     }
   }, [isReady, onComplete])

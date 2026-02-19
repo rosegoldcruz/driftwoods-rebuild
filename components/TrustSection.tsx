@@ -41,7 +41,7 @@ const localInfo = [
 
 export function TrustSection() {
   return (
-    <section className="py-20 bg-dark" id="trust">
+    <section className="py-20 bg-dark desktop-atmosphere" id="trust">
       <div className="container">
         {/* Google Rating Banner */}
         <motion.div
@@ -57,7 +57,7 @@ export function TrustSection() {
             ))}
           </div>
           <div className="text-center sm:text-left">
-            <span className="text-2xl font-bold text-cream">4.7</span>
+            <span className="text-2xl lg:text-3xl font-bold text-cream">4.7</span>
             <span className="text-gray-400 ml-2">on Google · 280+ reviews</span>
           </div>
         </motion.div>
@@ -67,7 +67,7 @@ export function TrustSection() {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
-              className="bg-dark-lighter p-6 rounded-2xl relative"
+              className="bg-dark-lighter p-6 rounded-2xl relative premium-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}

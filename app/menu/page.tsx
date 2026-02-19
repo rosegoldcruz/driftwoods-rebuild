@@ -412,9 +412,9 @@ export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState('starters')
 
   return (
-    <main className="min-h-screen bg-[#0a1628]">
+    <main className="min-h-screen bg-[#0a1628] desktop-atmosphere">
       {/* Hero Section */}
-      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden desktop-divider-fade">
         <video
           autoPlay
           muted
@@ -446,13 +446,13 @@ export default function MenuPage() {
       </section>
 
       {/* Picture Menu Cards */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-16 px-4 desktop-atmosphere">
+        <div className="container">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-white text-center mb-4"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-4 desktop-heading-glow"
           >
             View Full Picture Menus
           </motion.h2>
@@ -469,7 +469,7 @@ export default function MenuPage() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
                 onClick={() => setSelectedPictureMenu(menu)}
-                className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-amber-500/50 transition-all duration-300 hover:scale-105 text-left"
+                className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-amber-500/50 transition-all duration-300 hover:scale-105 text-left premium-card"
               >
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <menu.icon className="w-7 h-7 text-white" />
@@ -486,8 +486,8 @@ export default function MenuPage() {
       </section>
 
       {/* Order Online CTA */}
-      <section className="py-8 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-8 px-4 desktop-atmosphere">
+        <div className="container max-w-4xl">
           <motion.a
             href="https://order.toasttab.com/online/the-pier-driftwoods"
             target="_blank"
@@ -509,7 +509,7 @@ export default function MenuPage() {
 
       {/* Category Navigation */}
       <section className="sticky top-16 z-30 bg-[#0a1628]/95 backdrop-blur-md border-y border-white/10 py-4">
-        <div className="max-w-6xl mx-auto px-4 overflow-x-auto scrollbar-hide">
+        <div className="container overflow-x-auto scrollbar-hide">
           <div className="flex gap-2 min-w-max">
             {menuCategories.map((cat) => (
               <button
@@ -531,8 +531,9 @@ export default function MenuPage() {
       </section>
 
       {/* Menu Categories */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto space-y-20">
+      <section className="relative py-16 px-4 overflow-hidden desktop-atmosphere">
+        <div className="absolute inset-0 hidden lg:block" style={{ backgroundImage: "linear-gradient(180deg, rgba(10,22,40,0.65) 0%, rgba(10,22,40,0.9) 100%), url('https://cdn.ing/assets/i/r/285213/5zggi7whevnjowisv0iko7t1ay8m/spaghetti-alle-vongole-seafood-pasta-with-clams-in-bowl.jpg')", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.28 }} aria-hidden="true" />
+        <div className="container relative z-10 space-y-20">
           {menuCategories.map((category, catIdx) => (
             <motion.div
               key={category.id}
@@ -544,7 +545,7 @@ export default function MenuPage() {
               className="scroll-mt-32"
             >
               <div className="text-center mb-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 desktop-heading-glow">
                   {category.name}
                 </h2>
                 <p className="text-amber-500">{category.description}</p>
@@ -558,7 +559,7 @@ export default function MenuPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.05 }}
-                    className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-amber-500/30 transition-colors"
+                    className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-amber-500/30 transition-colors premium-card"
                     itemScope
                     itemType="https://schema.org/MenuItem"
                   >
@@ -597,9 +598,9 @@ export default function MenuPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-20 px-4 bg-gradient-to-t from-black/50 to-transparent">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+      <section className="py-20 px-4 bg-gradient-to-t from-black/50 to-transparent desktop-atmosphere">
+        <div className="container max-w-4xl text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 desktop-heading-glow">
             Ready to Order?
           </h2>
           <p className="text-white/70 mb-8 max-w-2xl mx-auto">

@@ -63,8 +63,7 @@ const benefits = [
 export default function CareersPage() {
   return (
     <>
-      {/* Hero Banner */}
-      <section className="relative pt-32 pb-20 bg-dark">
+      <section className="relative pt-32 pb-20 bg-dark desktop-divider-fade desktop-atmosphere">
         <div className="container relative z-10">
           <motion.div
             className="text-center max-w-3xl mx-auto"
@@ -75,15 +74,34 @@ export default function CareersPage() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-cream mb-6">
               Join Our <span className="text-primary">Team</span>
             </h1>
-            <p className="text-xl text-gray-300">
-              We're always looking for passionate people to join the Driftwoods family.
-            </p>
+            <p className="text-xl text-gray-300">We're always looking for passionate people to join the Driftwoods family.</p>
           </motion.div>
         </div>
       </section>
 
-      {/* Why Work Here */}
-      <section className="py-20 bg-cream">
+      <section className="relative py-20 lg:py-28 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(180deg, rgba(26,33,47,0.45) 0%, rgba(26,33,47,0.82) 80%), url('https://cdn.ing/assets/i/r/143988/ue3nwb6bsmjre17n396ofy1dvivs/wall.webp')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+          aria-hidden="true"
+        />
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto rounded-2xl premium-card bg-dark/55 backdrop-blur-md p-8 lg:p-12 text-center">
+            <h2 className="text-3xl lg:text-4xl font-bold text-cream mb-4 desktop-heading-glow">The Team Behind the Bar & Kitchen</h2>
+            <p className="text-lg text-cream/90">
+              Join a crew that values hospitality, consistency, and a high-energy service culture built for Sunnyslope.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 bg-cream desktop-atmosphere">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-dark to-transparent opacity-70 pointer-events-none" aria-hidden="true" />
         <div className="container">
           <motion.div
             className="text-center mb-12"
@@ -91,20 +109,17 @@ export default function CareersPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">
-              Why Work at Driftwoods?
-            </h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4 desktop-heading-glow">Why Work at Driftwoods?</h2>
             <p className="text-dark/70 max-w-2xl mx-auto">
-              We're more than a workplace — we're a community. Join a team that values hard work, 
-              creativity, and having fun while delivering great experiences.
+              We're more than a workplace — we're a community. Join a team that values hard work, creativity, and having fun while delivering great experiences.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={benefit.title}
-                className="bg-white p-6 rounded-xl shadow-md"
+                className="bg-white p-6 rounded-xl premium-card"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -121,8 +136,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Open Positions */}
-      <section className="py-20 bg-dark-lighter">
+      <section className="py-20 bg-dark-lighter desktop-atmosphere">
         <div className="container">
           <motion.div
             className="text-center mb-12"
@@ -130,12 +144,9 @@ export default function CareersPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-cream mb-4">
-              Open Positions
-            </h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-cream mb-4 desktop-heading-glow">Open Positions</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Check out our current openings below. Don't see what you're looking for? 
-              We're always accepting applications.
+              Check out our current openings below. Don't see what you're looking for? We're always accepting applications.
             </p>
           </motion.div>
 
@@ -143,7 +154,7 @@ export default function CareersPage() {
             {openPositions.map((position, index) => (
               <motion.div
                 key={position.title}
-                className="bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary/30 transition-colors"
+                className="bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary/30 transition-colors premium-card"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -165,10 +176,7 @@ export default function CareersPage() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={`/careers/apply?position=${encodeURIComponent(position.title)}`}
-                  className="btn-primary inline-block text-sm px-6 py-2"
-                >
+                <Link href={`/careers/apply?position=${encodeURIComponent(position.title)}`} className="btn-primary inline-block text-sm px-6 py-2">
                   Apply Now
                 </Link>
               </motion.div>
@@ -177,32 +185,18 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* General Application CTA */}
-      <section className="py-20 bg-primary">
+      <section className="py-20 bg-primary desktop-atmosphere">
         <div className="container text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Don't See Your Position?
-            </h2>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 desktop-heading-glow">Don't See Your Position?</h2>
             <p className="text-white/90 mb-8 max-w-2xl mx-auto">
-              We're always on the lookout for talented individuals. Submit a general application 
-              and we'll keep you in mind for future opportunities.
+              We're always on the lookout for talented individuals. Submit a general application and we'll keep you in mind for future opportunities.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/careers/apply"
-                className="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-cream transition-colors"
-              >
+              <Link href="/careers/apply" className="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-cream transition-colors">
                 Submit General Application
               </Link>
-              <Link
-                href="/contact"
-                className="bg-transparent text-white border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors"
-              >
+              <Link href="/contact" className="bg-transparent text-white border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors">
                 Contact Us
               </Link>
             </div>
@@ -210,10 +204,9 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Location Note */}
       <section className="py-12 bg-dark">
         <div className="container">
-          <div className="flex items-center justify-center gap-2 text-gray-400">
+          <div className="flex items-center justify-center gap-2 text-gray-400 text-center">
             <MapPin className="w-5 h-5 text-primary" />
             <span>All positions are located at our Sunnyslope location: 9832 N. 7th St., Phoenix, AZ 85020</span>
           </div>

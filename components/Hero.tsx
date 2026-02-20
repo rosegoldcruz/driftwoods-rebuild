@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { MapPin, ChevronDown } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { LoadingScreen } from './LoadingScreen'
+import { CoolMode } from './ui/cool-mode'
 
 const TOAST_ORDER_URL = 'https://order.toasttab.com/online/the-pier-driftwoods'
 
@@ -138,15 +139,17 @@ export function Hero() {
               animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 15 }}
               transition={{ duration: 0.4, delay: 0.4 }}
             >
-              <a
-                href={TOAST_ORDER_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all min-h-[56px] min-w-[180px] active:scale-[0.98] shadow-lg shadow-primary/30 border-2 border-primary lg:hover:shadow-[0_0_24px_rgba(224,122,47,0.45)]"
-                style={{ touchAction: 'manipulation' }}
-              >
-                Order Online
-              </a>
+              <CoolMode options={{ particle: 'circle', particleCount: 36 }} className="inline-block">
+                <a
+                  href={TOAST_ORDER_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all min-h-[56px] min-w-[180px] active:scale-[0.98] shadow-lg shadow-primary/30 border-2 border-primary lg:hover:shadow-[0_0_24px_rgba(224,122,47,0.45)]"
+                  style={{ touchAction: 'manipulation' }}
+                >
+                  Order Online
+                </a>
+              </CoolMode>
 
               <Link
                 href="/menu"

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
+import { CoolMode } from '@/components/ui/cool-mode'
 
 const orderOptions = [
   {
@@ -77,36 +78,37 @@ export default function OrderPage() {
 
             <div className="grid sm:grid-cols-2 gap-6">
               {orderOptions.map((option, index) => (
-                <motion.a
-                  key={option.name}
-                  href={option.link}
-                  target={option.link.startsWith('http') ? '_blank' : undefined}
-                  rel={option.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary/50 transition-all group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`text-4xl p-3 rounded-xl ${option.color}`}>
-                      {option.logo}
+                <CoolMode key={option.name} options={{ particle: 'circle', particleCount: 30 }} className="block">
+                  <motion.a
+                    href={option.link}
+                    target={option.link.startsWith('http') ? '_blank' : undefined}
+                    rel={option.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="bg-dark p-6 rounded-xl border border-gray-800 hover:border-primary/50 transition-all group block"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className={`text-4xl p-3 rounded-xl ${option.color}`}>
+                        {option.logo}
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-cream group-hover:text-primary transition-colors">
+                          {option.name}
+                        </h3>
+                        <p className="text-gray-400 text-sm">{option.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-cream group-hover:text-primary transition-colors">
-                        {option.name}
-                      </h3>
-                      <p className="text-gray-400 text-sm">{option.description}</p>
+                    <div className="flex items-center gap-2 text-primary">
+                      <span className="text-sm font-medium">
+                        {option.link.startsWith('tel') ? 'Call Now' : 'Order Now'}
+                      </span>
+                      <ExternalLink size={16} />
                     </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-primary">
-                    <span className="text-sm font-medium">
-                      {option.link.startsWith('tel') ? 'Call Now' : 'Order Now'}
-                    </span>
-                    <ExternalLink size={16} />
-                  </div>
-                </motion.a>
+                  </motion.a>
+                </CoolMode>
               ))}
             </div>
           </div>

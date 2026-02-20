@@ -2,6 +2,7 @@
 
 import { Star, Quote, MapPin, Clock, Car } from 'lucide-react'
 import { motion } from 'framer-motion'
+import SpotlightCard from './ui/SpotlightCard'
 
 const testimonials = [
   {
@@ -67,20 +68,25 @@ export function TrustSection() {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
-              className="bg-dark-lighter p-6 rounded-2xl relative premium-card"
+              className="relative"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.2, delay: index * 0.08 }}
             >
-              <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/20" />
-              <div className="flex gap-0.5 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-gray-300 mb-4 leading-relaxed">&quot;{testimonial.text}&quot;</p>
-              <p className="text-cream font-medium">— {testimonial.author}</p>
+              <SpotlightCard
+                className="bg-dark-lighter p-6 rounded-2xl premium-card h-full"
+                spotlightColor="rgba(224, 122, 47, 0.22)"
+              >
+                <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/20" />
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4 leading-relaxed">&quot;{testimonial.text}&quot;</p>
+                <p className="text-cream font-medium">— {testimonial.author}</p>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

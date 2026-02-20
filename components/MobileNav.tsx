@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, type RefObject } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { CoolMode } from './ui/cool-mode'
 
 type NavLink = {
   href: string
@@ -125,15 +126,17 @@ export function MobileNav({ isOpen, onToggle, onClose, navLinks }: MobileNavProp
                   </li>
                 ))}
                 <li className="pt-2">
-                  <a
-                    href="https://order.toasttab.com/online/the-pier-driftwoods"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary block text-center text-lg"
-                    onClick={onClose}
-                  >
-                    Order Online
-                  </a>
+                  <CoolMode options={{ particle: 'circle', particleCount: 28 }} className="block">
+                    <a
+                      href="https://order.toasttab.com/online/the-pier-driftwoods"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary block text-center text-lg"
+                      onClick={onClose}
+                    >
+                      Order Online
+                    </a>
+                  </CoolMode>
                 </li>
               </ul>
             </nav>

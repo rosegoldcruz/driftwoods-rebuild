@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { CoolMode } from '@/components/ui/cool-mode'
 
 const TOAST_ORDER_URL = 'https://order.toasttab.com/online/the-pier-driftwoods'
 
@@ -148,9 +149,11 @@ export default function AboutPage() {
               Come experience the Driftwoods difference. We can't wait to welcome you.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href={TOAST_ORDER_URL} target="_blank" rel="noopener noreferrer" className="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-cream transition-colors min-h-[56px]">
-                Order Online
-              </a>
+              <CoolMode options={{ particle: 'circle', particleCount: 32 }}>
+                <a href={TOAST_ORDER_URL} target="_blank" rel="noopener noreferrer" className="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-cream transition-colors min-h-[56px]">
+                  Order Online
+                </a>
+              </CoolMode>
               <Link href="/menu" className="bg-transparent text-white border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors min-h-[56px]">
                 View Menu
               </Link>

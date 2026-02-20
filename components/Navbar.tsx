@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MobileNav } from './MobileNav'
+import { CoolMode } from './ui/cool-mode'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -44,14 +45,16 @@ export function Navbar() {
             </li>
           ))}
           <li>
-            <a
-              href="https://order.toasttab.com/online/the-pier-driftwoods"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary text-sm"
-            >
-              Order Online
-            </a>
+            <CoolMode options={{ particle: 'circle', particleCount: 28 }}>
+              <a
+                href="https://order.toasttab.com/online/the-pier-driftwoods"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary text-sm"
+              >
+                Order Online
+              </a>
+            </CoolMode>
           </li>
         </ul>
 

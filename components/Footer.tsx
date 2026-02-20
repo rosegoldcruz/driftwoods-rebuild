@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { MapPin, Phone, Clock, Instagram, Facebook, Mail } from 'lucide-react'
-import { CoolMode } from './ui/cool-mode'
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -77,14 +76,12 @@ export function Footer() {
                   </li>
                 ))}
                 <li>
-                  <CoolMode options={{ particle: 'circle', particleCount: 24 }}>
-                    <Link
-                      href="/order"
-                      className="text-primary hover:text-primary-light transition-colors font-medium"
-                    >
-                      Order Online →
-                    </Link>
-                  </CoolMode>
+                  <Link
+                    href="/order"
+                    className="text-primary hover:text-primary-light transition-colors font-medium inline-block order-cta-pulse"
+                  >
+                    Order Online →
+                  </Link>
                 </li>
               </ul>
             </nav>

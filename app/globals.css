@@ -63,6 +63,46 @@ body {
   @apply bg-cream text-dark transform scale-105;
 }
 
+@keyframes order-rim-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes order-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(224, 122, 47, 0.45), 0 10px 26px rgba(224, 122, 47, 0.26);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(224, 122, 47, 0.08), 0 14px 34px rgba(224, 122, 47, 0.4);
+  }
+}
+
+.order-cta-pulse {
+  position: relative;
+  isolation: isolate;
+  animation: order-pulse-glow 2.1s ease-in-out infinite;
+}
+
+.order-cta-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    rgba(224, 122, 47, 0.05),
+    rgba(224, 122, 47, 0.55),
+    rgba(245, 158, 91, 0.9),
+    rgba(224, 122, 47, 0.55),
+    rgba(224, 122, 47, 0.05)
+  );
+  filter: blur(8px);
+  animation: order-rim-spin 4.8s linear infinite;
+  pointer-events: none;
+}
+
 /* Focus states for accessibility */
 a:focus,
 button:focus,

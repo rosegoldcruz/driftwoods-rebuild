@@ -39,22 +39,22 @@ export function Navbar() {
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="text-cream hover:text-primary transition-colors font-medium">
-                {link.label}
-              </Link>
+              <CoolMode options={{ particle: 'circle', particleCount: 20 }}>
+                <Link href={link.href} className="text-cream hover:text-primary transition-colors font-medium">
+                  {link.label}
+                </Link>
+              </CoolMode>
             </li>
           ))}
           <li>
-            <CoolMode options={{ particle: 'circle', particleCount: 28 }}>
-              <a
-                href="https://order.toasttab.com/online/the-pier-driftwoods"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-sm"
-              >
-                Order Online
-              </a>
-            </CoolMode>
+            <a
+              href="https://order.toasttab.com/online/the-pier-driftwoods"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-sm order-cta-pulse"
+            >
+              Order Online
+            </a>
           </li>
         </ul>
 

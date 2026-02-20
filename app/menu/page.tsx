@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn, ChevronLeft, ChevronRight, Utensils, Wine, Clock, Sun } from 'lucide-react'
 import Image from 'next/image'
-import { CoolMode } from '@/components/ui/cool-mode'
 
 // Picture Menu Data - All 8 images organized into 4 sections
 const pictureMenus = [
@@ -489,24 +488,22 @@ export default function MenuPage() {
       {/* Order Online CTA */}
       <section className="py-8 px-4 desktop-atmosphere desktop-neon-stage">
         <div className="container max-w-4xl">
-          <CoolMode options={{ particle: 'circle', particleCount: 34 }} className="block">
-            <motion.a
-              href="https://order.toasttab.com/online/the-pier-driftwoods"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="block bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl p-8 text-center hover:scale-[1.02] transition-transform premium-card lg:hover:shadow-[0_0_28px_rgba(224,122,47,0.42)]"
-            >
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                Order Online Now
-              </h3>
-              <p className="text-white/90">
-                Skip the wait — place your order for pickup or delivery
-              </p>
-            </motion.a>
-          </CoolMode>
+          <motion.a
+            href="https://order.toasttab.com/online/the-pier-driftwoods"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="block bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl p-8 text-center hover:scale-[1.02] transition-transform premium-card lg:hover:shadow-[0_0_28px_rgba(224,122,47,0.42)] order-cta-pulse"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              Order Online Now
+            </h3>
+            <p className="text-white/90">
+              Skip the wait — place your order for pickup or delivery
+            </p>
+          </motion.a>
         </div>
       </section>
 
@@ -610,16 +607,14 @@ export default function MenuPage() {
             Join us at the pier or order online for pickup and delivery
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <CoolMode options={{ particle: 'circle', particleCount: 30 }}>
-              <a
-                href="https://order.toasttab.com/online/the-pier-driftwoods"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-semibold rounded-full hover:scale-105 transition-transform"
-              >
-                Order Online Now
-              </a>
-            </CoolMode>
+            <a
+              href="https://order.toasttab.com/online/the-pier-driftwoods"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-semibold rounded-full hover:scale-105 transition-transform order-cta-pulse"
+            >
+              Order Online Now
+            </a>
             <a
               href="tel:+14809876543"
               className="px-8 py-4 bg-white/10 text-white font-semibold rounded-full border border-white/20 hover:bg-white/20 transition-colors"

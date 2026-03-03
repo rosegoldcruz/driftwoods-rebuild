@@ -78,7 +78,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/order"
-                    className="text-primary hover:text-primary-light transition-colors font-medium inline-block order-cta-pulse"
+                    className="text-primary hover:text-primary-light transition-colors font-medium inline-block"
                   >
                     Order Online →
                   </Link>

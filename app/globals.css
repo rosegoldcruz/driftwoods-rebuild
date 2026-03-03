@@ -63,71 +63,51 @@ body {
   @apply bg-cream text-dark transform scale-105;
 }
 
-@keyframes order-star-top {
-  0% {
-    background-position: -38% 0%;
-    opacity: 0.9;
-  }
-  100% {
-    background-position: 138% 0%;
-    opacity: 0.2;
-  }
-}
-
-@keyframes order-star-bottom {
-  0% {
-    background-position: 138% 100%;
-    opacity: 0.2;
-  }
-  100% {
-    background-position: -38% 100%;
-    opacity: 0.9;
+@keyframes order-star-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
 .order-cta-pulse {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-}
-
-.order-cta-pulse::before,
-.order-cta-pulse::after {
-  content: '';
-  position: absolute;
-  inset: 0;
   z-index: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background-repeat: no-repeat;
-  pointer-events: none;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  overflow: visible;
 }
 
 .order-cta-pulse::before {
-  background-image: radial-gradient(circle, rgba(120, 241, 255, 0.95) 0%, rgba(120, 241, 255, 0.45) 12%, transparent 34%);
-  background-size: 44% 52%;
-  background-position: -38% 0%;
-  animation: order-star-top 4.8s linear infinite;
+  content: '';
+  position: absolute;
+  inset: -3px;
+  z-index: -2;
+  border-radius: inherit;
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(120, 241, 255, 0) 0deg,
+      rgba(120, 241, 255, 0) 290deg,
+      rgba(120, 241, 255, 0.2) 315deg,
+      rgba(120, 241, 255, 0.95) 334deg,
+      rgba(120, 241, 255, 0.25) 350deg,
+      rgba(120, 241, 255, 0) 360deg
+    );
+  animation: order-star-spin 3.2s linear infinite;
+  pointer-events: none;
 }
 
 .order-cta-pulse::after {
-  background-image: radial-gradient(circle, rgba(120, 241, 255, 0.95) 0%, rgba(120, 241, 255, 0.45) 12%, transparent 34%);
-  background-size: 44% 52%;
-  background-position: 138% 100%;
-  animation: order-star-bottom 4.8s linear infinite;
+  content: '';
+  position: absolute;
+  inset: 2px;
+  z-index: -1;
+  border-radius: inherit;
+  background: inherit;
+  pointer-events: none;
 }
 
-.order-cta-pulse:hover::before,
-.order-cta-pulse:hover::after {
-  animation-duration: 3.2s;
+.order-cta-pulse:hover::before {
+  animation-duration: 2.2s;
 }
 
 /* Focus states for accessibility */

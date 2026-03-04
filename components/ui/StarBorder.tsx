@@ -32,16 +32,16 @@ export const StarBorder = <T extends React.ElementType = 'button'>({
       }}
     >
       <div
-        className="absolute w-[300%] h-[50%] opacity-70 bottom-[-11px] right-[-250%] rounded-full z-0"
+        className="absolute w-full h-[2px] opacity-95 bottom-0 right-[-100%] rounded-full z-0"
         style={{
-          background: `radial-gradient(circle, ${color}, transparent 10%)`,
+          background: `linear-gradient(90deg, transparent 0%, transparent 42%, ${color} 50%, transparent 58%, transparent 100%)`,
           animation: `star-movement-bottom ${speed} linear infinite alternate`,
         }}
       />
       <div
-        className="absolute w-[300%] h-[50%] opacity-70 top-[-10px] left-[-250%] rounded-full z-0"
+        className="absolute w-full h-[2px] opacity-95 top-0 left-[-100%] rounded-full z-0"
         style={{
-          background: `radial-gradient(circle, ${color}, transparent 10%)`,
+          background: `linear-gradient(90deg, transparent 0%, transparent 42%, ${color} 50%, transparent 58%, transparent 100%)`,
           animation: `star-movement-top ${speed} linear infinite alternate`,
         }}
       />

@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, type RefObject } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { StarBorder } from './ui/StarBorder'
 
 type NavLink = {
   href: string
@@ -125,15 +126,20 @@ export function MobileNav({ isOpen, onToggle, onClose, navLinks }: MobileNavProp
                   </li>
                 ))}
                 <li className="pt-2">
-                  <a
+                  <StarBorder
+                    as="a"
                     href="https://order.toasttab.com/online/the-pier-driftwoods"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-primary block text-center text-lg order-cta-pulse"
                     onClick={onClose}
+                    color="magenta"
+                    speed="5s"
+                    thickness={1}
+                    className="flex rounded-lg"
+                    contentClassName="w-full rounded-lg bg-primary px-8 py-4 text-center text-lg font-semibold text-white transition-all hover:bg-primary-dark"
                   >
                     Order Online
-                  </a>
+                  </StarBorder>
                 </li>
               </ul>
             </nav>

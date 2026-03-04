@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MobileNav } from './MobileNav'
 import { CoolMode } from './ui/cool-mode'
+import { StarBorder } from './ui/StarBorder'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -47,14 +48,19 @@ export function Navbar() {
             </li>
           ))}
           <li>
-            <a
+            <StarBorder
+              as="a"
               href="https://order.toasttab.com/online/the-pier-driftwoods"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary text-sm order-cta-pulse"
+              color="magenta"
+              speed="5s"
+              thickness={1}
+              className="inline-flex rounded-lg"
+              contentClassName="inline-flex items-center justify-center rounded-lg bg-primary hover:bg-primary-dark text-white px-8 py-4 font-semibold text-sm transition-all"
             >
               Order Online
-            </a>
+            </StarBorder>
           </li>
         </ul>
 

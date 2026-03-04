@@ -63,7 +63,7 @@ body {
   @apply bg-cream text-dark transform scale-105;
 }
 
-@keyframes order-star-movement-bottom {
+@keyframes star-movement-bottom {
   0% {
     transform: translate(0%, 0%);
     opacity: 1;
@@ -75,7 +75,7 @@ body {
   }
 }
 
-@keyframes order-star-movement-top {
+@keyframes star-movement-top {
   0% {
     transform: translate(0%, 0%);
     opacity: 1;
@@ -111,7 +111,7 @@ body {
     rgba(255, 0, 255, 0) 58%,
     rgba(255, 0, 255, 0) 100%
   );
-  animation: order-star-movement-top var(--order-star-speed, 5s) linear infinite alternate;
+  animation: star-movement-top var(--order-star-speed, 5s) linear infinite alternate;
   pointer-events: none;
   z-index: 0;
 }
@@ -133,7 +133,7 @@ body {
     rgba(255, 0, 255, 0) 58%,
     rgba(255, 0, 255, 0) 100%
   );
-  animation: order-star-movement-bottom var(--order-star-speed, 5s) linear infinite alternate;
+  animation: star-movement-bottom var(--order-star-speed, 5s) linear infinite alternate;
   pointer-events: none;
   z-index: 0;
 }

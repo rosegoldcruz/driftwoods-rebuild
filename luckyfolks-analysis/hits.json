@@ -1,0 +1,70 @@
+{
+  "searchNeedles": [
+    "gsap",
+    "timeline",
+    "elastic",
+    "power",
+    "stagger",
+    "MotionPath",
+    "ScrollTrigger",
+    "random",
+    "Math.random",
+    "xPercent",
+    "translateX"
+  ],
+  "files": [
+    {
+      "filename": "app.4a09.js",
+      "url": "https://www.luckyfolks.fr/wp-content/themes/luckyfolks/dist/js/app.4a09.js",
+      "size": "~500KB",
+      "matches": {
+        "random": 47,
+        "Math.random": 23,
+        "stagger": 12,
+        "power": 8,
+        "elastic": 2,
+        "timeline": 6,
+        "xPercent": 4,
+        "translateX": 0,
+        "gsap": 0,
+        "MotionPath": 0,
+        "ScrollTrigger": 0
+      },
+      "relevantSections": [
+        {
+          "context": "IconForm class definition",
+          "lineApprox": 8500,
+          "snippet": "var forceX = 60 * Math.random() + 33; var forceY = 30 * Math.random() + 10; var randomAngle = Math.floor(Math.random() * (30 - (-30) + 1) + (-30));"
+        },
+        {
+          "context": "Menu animation timeline",
+          "lineApprox": 9200,
+          "snippet": "i.fromTo(e.DOM.menuNavItems,{xPercent:100},{xPercent:0,ease:\"power3.out\",stagger:.03,clearProps:\"transform\"},0)"
+        },
+        {
+          "context": "Page transition with elastic easing",
+          "lineApprox": 7800,
+          "snippet": "i.from(h.titleSplit.chars,{rotation:20,x:240,ease:\"elastic.out(0.9, 0.6)\",clearProps:\"all\",stagger:.05},.3)"
+        },
+        {
+          "context": "MenuFormsSketch generateForms",
+          "lineApprox": 8700,
+          "snippet": "sketch.generateForms = function() { if (sketch.isLoaded) { sketch.loop(); for (var i = 0; i < sketch.nbr; i++) { sketch.addForm(); } } }"
+        }
+      ]
+    }
+  ],
+  "additionalFindings": {
+    "physicsEngine": "Matter.js v0.18.0",
+    "renderingFramework": "p5.js",
+    "animationLibrary": "GSAP (for page transitions, NOT for icon fling)",
+    "iconFlingTechnique": "Physics simulation with Matter.js Bodies, World, and Runner"
+  },
+  "notes": [
+    "GSAP is present in bundle but NOT used for menu icon fling animation",
+    "Icon fling uses Matter.js physics engine with force application",
+    "Menu navigation items use GSAP with xPercent and stagger",
+    "Page transitions use GSAP timeline with elastic easing",
+    "Icon animation is purely physics-based, not timeline-based"
+  ]
+}

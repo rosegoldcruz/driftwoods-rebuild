@@ -1,0 +1,120 @@
+{
+  "note": "Browser automation unavailable - traces are INFERRED from physics parameters",
+  "methodology": "Static code analysis of Matter.js physics configuration",
+  "iconCount": 10,
+  "sampleRate": "33ms (30fps equivalent)",
+  "duration": "2000ms",
+  "inferredTraces": [
+    {
+      "iconId": 0,
+      "shape": "icon_fer.svg",
+      "initialConditions": {
+        "x": 2100,
+        "y": 850,
+        "rotation": -15,
+        "forceX": -0.65,
+        "forceY": -0.25,
+        "mass": 6,
+        "friction": 0.9,
+        "restitution": 0.8
+      },
+      "keyframes": [
+        { "t": 0, "x": 2100, "y": 850, "rotation": -15, "velocityX": -65, "velocityY": -25 },
+        { "t": 100, "x": 1950, "y": 840, "rotation": -20, "velocityX": -70, "velocityY": -15 },
+        { "t": 300, "x": 1650, "y": 860, "rotation": -30, "velocityX": -75, "velocityY": 10 },
+        { "t": 500, "x": 150, "y": 920, "rotation": -45, "velocityX": 60, "velocityY": 30, "event": "WALL_HIT" },
+        { "t": 700, "x": 350, "y": 1050, "rotation": -55, "velocityX": 48, "velocityY": 45 },
+        { "t": 900, "x": 250, "y": 1200, "rotation": -65, "velocityX": -20, "velocityY": 55 },
+        { "t": 1200, "x": 150, "y": 1450, "rotation": -80, "velocityX": -10, "velocityY": 65 },
+        { "t": 2000, "x": 80, "y": 2000, "rotation": -120, "velocityX": -5, "velocityY": 70, "event": "OFFSCREEN" }
+      ]
+    },
+    {
+      "iconId": 1,
+      "shape": "icon_frittes.svg",
+      "initialConditions": {
+        "x": 2300,
+        "y": 750,
+        "rotation": 25,
+        "forceX": -0.85,
+        "forceY": -0.35,
+        "mass": 6,
+        "friction": 0.9,
+        "restitution": 0.8
+      },
+      "keyframes": [
+        { "t": 0, "x": 2300, "y": 750, "rotation": 25, "velocityX": -85, "velocityY": -35 },
+        { "t": 100, "x": 2100, "y": 730, "rotation": 30, "velocityX": -90, "velocityY": -20 },
+        { "t": 300, "x": 1700, "y": 760, "rotation": 40, "velocityX": -95, "velocityY": 15 },
+        { "t": 450, "x": 100, "y": 850, "rotation": 55, "velocityX": 76, "velocityY": 35, "event": "WALL_HIT" },
+        { "t": 650, "x": 400, "y": 1000, "rotation": 70, "velocityX": 60, "velocityY": 50 },
+        { "t": 850, "x": 280, "y": 1180, "rotation": 85, "velocityX": -15, "velocityY": 60 },
+        { "t": 1100, "x": 180, "y": 1400, "rotation": 105, "velocityX": -8, "velocityY": 68 },
+        { "t": 1800, "x": 100, "y": 1950, "rotation": 150, "velocityX": -3, "velocityY": 72, "event": "OFFSCREEN" }
+      ]
+    }
+  ],
+  "physicsParameters": {
+    "gravity": {
+      "x": 0,
+      "y": 1,
+      "scale": 0.001
+    },
+    "walls": {
+      "left": {
+        "x": -50,
+        "y": "0.5 * windowHeight",
+        "width": 100,
+        "height": "3 * windowHeight",
+        "isStatic": true
+      },
+      "top": {
+        "x": "0.5 * windowWidth",
+        "y": -50,
+        "width": "3 * windowWidth",
+        "height": 100,
+        "isStatic": true
+      }
+    },
+    "bodyOptions": {
+      "friction": 0.9,
+      "restitution": 0.8,
+      "mass": 6,
+      "frictionAir": 0,
+      "angleRange": [-30, 30],
+      "forceXRange": [-0.93, -0.33],
+      "forceYRange": [-0.40, -0.10]
+    }
+  },
+  "motionPattern": {
+    "phase1_spawn": {
+      "duration": "0ms",
+      "description": "Icons spawn off-screen right with random Y position"
+    },
+    "phase2_fling": {
+      "duration": "0-500ms",
+      "description": "Icons accelerate left due to applied force, gravity pulls down"
+    },
+    "phase3_wallHit": {
+      "duration": "450-600ms",
+      "description": "Icons collide with left wall, bounce back with 80% energy retention"
+    },
+    "phase4_settle": {
+      "duration": "600-1200ms",
+      "description": "Icons lose momentum, friction dissipates energy, gravity dominates"
+    },
+    "phase5_cleanup": {
+      "duration": "1200-2000ms",
+      "description": "Icons fall off-screen bottom, removed from world"
+    }
+  },
+  "transformMatrixSamples": {
+    "note": "Matter.js uses position + rotation, not CSS transform matrices",
+    "format": "{ x, y, rotation }",
+    "example": {
+      "t0": { "x": 2100, "y": 850, "rotation": -0.26 },
+      "t500": { "x": 150, "y": 920, "rotation": -0.79 },
+      "t1000": { "x": 200, "y": 1300, "rotation": -1.13 }
+    }
+  }
+}

@@ -20,7 +20,7 @@ export function Hero() {
 
     const preloadTargets = [
       'https://cdn.ing/assets/i/r/143988/ue3nwb6bsmjre17n396ofy1dvivs/wall.webp',
-      'https://toastability-production.s3.amazonaws.com/l5upmfajdxr8g1f083zaqoj64tgb',
+      '/signage.svg',
     ]
 
     let loadedCount = 0
@@ -90,7 +90,7 @@ export function Hero() {
         >
           <div className="max-w-3xl mx-auto">
             <motion.img
-              src="https://toastability-production.s3.amazonaws.com/l5upmfajdxr8g1f083zaqoj64tgb"
+              src="/signage.svg"
               alt="Driftwoods Bar & Grill"
               className="h-24 sm:h-32 md:h-40 lg:h-48 mx-auto mb-6"
               loading="eager"

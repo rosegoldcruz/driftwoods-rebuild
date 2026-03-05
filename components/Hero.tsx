@@ -135,7 +135,7 @@ export function Hero() {
             </motion.a>
 
             <motion.div
-              className="flex flex-col sm:flex-row justify-center gap-4"
+              className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 15 }}
               transition={{ duration: 0.4, delay: 0.4 }}
@@ -148,16 +148,16 @@ export function Hero() {
                 color="magenta"
                 speed="5s"
                 thickness={1}
-                className="inline-flex rounded-xl min-h-[56px] min-w-[180px]"
+                className="inline-flex rounded-xl min-h-[56px] w-full sm:w-auto sm:min-w-[180px]"
                 style={{ touchAction: 'manipulation' }}
-                contentClassName="inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold text-lg px-8 py-4 transition-all active:scale-[0.98] shadow-lg shadow-primary/30 lg:hover:shadow-[0_0_24px_rgba(224,122,47,0.45)]"
+                contentClassName="inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold text-lg px-8 py-4 transition-all active:scale-[0.98] shadow-lg shadow-primary/30 lg:hover:shadow-[0_0_24px_rgba(224,122,47,0.45)] w-full"
               >
                 Order Online
               </StarBorder>
 
               <Link
                 href="/menu"
-                className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-cream font-semibold text-lg px-8 py-4 rounded-xl border-2 border-cream/50 hover:border-cream transition-all min-h-[56px] min-w-[180px] active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-cream font-semibold text-lg px-8 py-4 rounded-xl border-2 border-cream/50 hover:border-cream transition-all min-h-[56px] w-full sm:w-auto sm:min-w-[180px] active:scale-[0.98]"
                 style={{ touchAction: 'manipulation' }}
               >
                 View Menu

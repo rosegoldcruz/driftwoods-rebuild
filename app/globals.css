@@ -28,6 +28,39 @@ body {
   overflow-x: hidden;
 }
 
+/* Hide browser scroll progress indicators and orange bars */
+::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+
+/* Hide any potential scroll progress bars */
+body::before,
+html::before {
+  display: none !important;
+}
+
+/* Force hide any top progress bars or indicators */
+#nprogress,
+.nprogress-custom-parent,
+[class*="progress"],
+[id*="progress"],
+[class*="scroll-indicator"],
+[id*="scroll-indicator"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Specifically target any fixed elements at top with orange/primary colors */
+body > div[style*="position: fixed"][style*="top: 0"],
+body > div[style*="position:fixed"][style*="top:0"] {
+  display: none !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

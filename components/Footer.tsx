@@ -1,3 +1,4 @@
+// components/Footer.tsx
 import Link from 'next/link'
 import { MapPin, Phone, Clock, Instagram, Facebook, Mail } from 'lucide-react'
 

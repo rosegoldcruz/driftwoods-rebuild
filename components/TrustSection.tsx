@@ -1,3 +1,4 @@
+// components/TrustSection.tsx
 'use client'
 
 import { Star, Quote, MapPin, Clock, Car } from 'lucide-react'

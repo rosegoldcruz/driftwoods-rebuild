@@ -1,3 +1,4 @@
+// components/ui/cool-mode.tsx
 'use client'
 
 import { type ReactNode, useEffect, useRef } from 'react'

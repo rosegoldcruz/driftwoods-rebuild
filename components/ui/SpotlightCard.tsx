@@ -1,3 +1,4 @@
+// components/ui/SpotlightCard.tsx
 'use client'
 
 import { useRef } from 'react'

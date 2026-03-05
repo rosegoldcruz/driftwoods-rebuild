@@ -108,8 +108,8 @@ export function MobileNav({ navLinks }: MobileNavProps) {
               </button>
             </div>
 
-            <nav aria-label="Mobile main navigation" className="flex-1 flex items-center justify-center">
-              <ul className="space-y-3 text-center md:translate-x-16">
+            <nav aria-label="Mobile main navigation" className="flex-1 flex items-center justify-end px-4 sm:px-6">
+              <ul className="space-y-3 text-right">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link

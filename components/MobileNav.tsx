@@ -3,7 +3,6 @@
 import { useEffect, useId, useRef, type RefObject } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
-import { StarBorder } from './ui/StarBorder'
 
 type NavLink = {
   href: string
@@ -75,7 +74,7 @@ export function MobileNav({ isOpen, onToggle, onClose, navLinks }: MobileNavProp
     <>
       <button
         type="button"
-        className="md:hidden p-2 text-cream hover:text-primary transition-colors"
+        className="xl:hidden p-2 text-cream hover:text-primary transition-colors"
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={menuId}
@@ -91,55 +90,47 @@ export function MobileNav({ isOpen, onToggle, onClose, navLinks }: MobileNavProp
           aria-modal="true"
           role="dialog"
           aria-label="Mobile navigation menu"
-          className="fixed inset-0 z-[120] md:hidden bg-dark/96 backdrop-blur-md"
+          className="fixed inset-0 z-[120] xl:hidden bg-[linear-gradient(135deg,#17233a_0%,#121f37_100%)]"
           style={{
-            paddingTop: 'max(1rem, env(safe-area-inset-top, 0px))',
-            paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 0px))',
+            paddingTop: 'max(1.25rem, env(safe-area-inset-top, 0px))',
+            paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))',
           }}
         >
-          <div className="container h-full flex flex-col">
-            <div className="flex items-center justify-between mb-6">
-              <Link href="/" className="flex items-center gap-2" aria-label="Driftwoods Home" onClick={onClose}>
-                <img src="/Neon sign.webp" alt="Driftwoods" className="h-10 w-auto object-contain" />
-              </Link>
+          <div className="h-full flex flex-col">
+            <div className="flex items-start justify-end px-4 sm:px-6">
               <button
                 type="button"
                 onClick={onClose}
-                className="p-2 text-cream hover:text-primary transition-colors"
+                className="p-2 text-white/90 hover:text-white transition-colors"
                 aria-label="Close mobile menu"
               >
-                <X size={28} />
+                <X size={34} strokeWidth={2.1} />
               </button>
             </div>
 
-            <nav aria-label="Mobile main navigation" className="flex-1">
-              <ul className="flex flex-col gap-3">
+            <nav aria-label="Mobile main navigation" className="flex-1 flex items-center justify-center">
+              <ul className="space-y-3 text-center md:translate-x-16">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="block rounded-lg border border-cream/20 px-5 py-4 text-xl font-semibold text-cream hover:border-primary hover:text-primary transition-colors"
+                      className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
                       onClick={onClose}
                     >
                       {link.label}
                     </Link>
                   </li>
                 ))}
-                <li className="pt-2">
-                  <StarBorder
-                    as="a"
+                <li>
+                  <a
                     href="https://order.toasttab.com/online/the-pier-driftwoods"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={onClose}
-                    color="magenta"
-                    speed="5s"
-                    thickness={1}
-                    className="flex rounded-lg"
-                    contentClassName="w-full rounded-lg bg-primary px-8 py-4 text-center text-lg font-semibold text-white transition-all hover:bg-primary-dark"
+                    className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
                   >
                     Order Online
-                  </StarBorder>
+                  </a>
                 </li>
               </ul>
             </nav>

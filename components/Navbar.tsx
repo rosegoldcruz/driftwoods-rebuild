@@ -37,7 +37,7 @@ export function Navbar() {
           <img src="/Neon sign.webp" alt="Driftwoods" className="h-10 md:h-14 w-auto object-contain" />
         </Link>
 
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden xl:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
               <CoolMode options={{ particle: 'circle', particleCount: 20 }}>

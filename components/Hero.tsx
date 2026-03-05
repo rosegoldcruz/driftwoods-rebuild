@@ -74,10 +74,12 @@ export function Hero() {
             src="https://cdn.ing/assets/i/r/143988/ue3nwb6bsmjre17n396ofy1dvivs/wall.webp"
             alt=""
             className="w-full h-full object-cover"
+            style={{ objectPosition: 'center 5%' }}
             loading="eager"
           />
 
           <div className="absolute inset-0 bg-dark/50" />
+          <div className="absolute top-0 left-0 right-0 h-16 bg-dark z-10" />
           <div className="absolute inset-0 hidden lg:block bg-[radial-gradient(circle_at_50%_35%,rgba(224,122,47,0.18),transparent_60%)]" aria-hidden="true" />
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-dark to-transparent" />
         </motion.div>

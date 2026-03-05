@@ -126,7 +126,6 @@ export function MobileNav({ navLinks }: MobileNavProps) {
                     href="https://order.toasttab.com/online/the-pier-driftwoods"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={onClose}
                     className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
                   >
                     Order Online

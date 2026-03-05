@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, type RefObject } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { useNav } from '@/context/NavContext'
 
 type NavLink = {
   href: string
@@ -10,13 +11,10 @@ type NavLink = {
 }
 
 type MobileNavProps = {
-  isOpen: boolean
-  onToggle: () => void
-  onClose: () => void
   navLinks: NavLink[]
 }
 
-function useFocusTrap(active: boolean, containerRef: RefObject<HTMLElement>, onEscape: () => void) {
+function useFocusTrap(active: boolean, containerRef: RefObject<HTMLElement | null>, onEscape: () => void) {
   useEffect(() => {
     if (!active || !containerRef.current) return
 
@@ -53,9 +51,10 @@ function useFocusTrap(active: boolean, containerRef: RefObject<HTMLElement>, onE
   }, [active, containerRef, onEscape])
 }
 
-export function MobileNav({ isOpen, onToggle, onClose, navLinks }: MobileNavProps) {
+export function MobileNav({ navLinks }: MobileNavProps) {
+  const { isNavOpen: isOpen, toggleNav: onToggle, closeNav: onClose } = useNav()
   const menuId = useId()
-  const overlayRef = useRef<HTMLElement>(null)
+  const overlayRef = useRef<HTMLElement | null>(null)
 
   useFocusTrap(isOpen, overlayRef, onClose)
 

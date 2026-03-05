@@ -34,7 +34,7 @@ export function Navbar() {
     >
       <nav className="container flex items-center justify-between" aria-label="Main navigation">
         <Link href="/" className="flex items-center gap-2" aria-label="Driftwoods Home">
-          <img src="/Neon sign.webp" alt="Driftwoods" className="h-10 md:h-14 w-auto object-contain" />
+          <img src="/signage.svg" alt="Driftwoods" className="h-10 md:h-14 w-auto object-contain" />
         </Link>
 
         <ul className="hidden xl:flex items-center gap-8">

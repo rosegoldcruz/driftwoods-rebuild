@@ -48,7 +48,7 @@ export function LoadingScreen({ isReady, onComplete }: LoadingScreenProps) {
           aria-label="Loading content"
         >
           <div className="flex flex-col items-center gap-4 rounded-xl border border-dark/20 bg-white/60 px-6 py-8 shadow-lg">
-            <img src="/Neon sign.webp" alt="" className="h-14 w-auto object-contain" />
+            <img src="/signage.svg" alt="" className="h-14 w-auto object-contain" />
             <div className="h-1.5 w-36 overflow-hidden rounded-full bg-dark/15" aria-hidden="true">
               <motion.div
                 className="h-full w-1/2 rounded-full bg-primary"

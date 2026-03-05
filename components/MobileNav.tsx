@@ -74,7 +74,7 @@ export function MobileNav({ isOpen, onToggle, onClose, navLinks }: MobileNavProp
     <>
       <button
         type="button"
-        className="xl:hidden p-2 text-cream hover:text-primary transition-colors"
+        className="p-2 text-cream hover:text-primary transition-colors"
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={menuId}
@@ -90,7 +90,7 @@ export function MobileNav({ isOpen, onToggle, onClose, navLinks }: MobileNavProp
           aria-modal="true"
           role="dialog"
           aria-label="Mobile navigation menu"
-          className="fixed inset-0 z-[120] xl:hidden bg-[linear-gradient(135deg,#17233a_0%,#121f37_100%)]"
+          className="fixed inset-0 z-[120] bg-[linear-gradient(135deg,#17233a_0%,#121f37_100%)]"
           style={{
             paddingTop: 'max(1.25rem, env(safe-area-inset-top, 0px))',
             paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))',

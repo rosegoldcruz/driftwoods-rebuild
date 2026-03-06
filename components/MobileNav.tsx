@@ -90,7 +90,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
           aria-modal="true"
           role="dialog"
           aria-label="Mobile navigation menu"
-          className="fixed inset-0 z-[120] bg-[linear-gradient(135deg,#17233a_0%,#121f37_100%)]"
+          className="fixed inset-0 z-[120] bg-dark"
           style={{
             paddingTop: 'max(1.25rem, env(safe-area-inset-top, 0px))',
             paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))',

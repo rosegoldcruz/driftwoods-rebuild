@@ -67,9 +67,7 @@ function NavbarInner() {
             </li>
           </ul>
 
-          <div className="md:hidden">
-            <MobileNav navLinks={navLinks} />
-          </div>
+          <MobileNav navLinks={navLinks} />
         </div>
       </nav>
       </header>

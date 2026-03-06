@@ -4,6 +4,7 @@
 import { useEffect, useId, useRef, type RefObject } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { createPortal } from 'react-dom'
 import { useNav } from '@/context/NavContext'
 
 type NavLink = {
@@ -15,7 +16,7 @@ type MobileNavProps = {
   navLinks: NavLink[]
 }
 
-function useFocusTrap(active: boolean, containerRef: RefObject<HTMLElement | null>, onEscape: () => void) {
+function useFocusTrap(active: boolean, containerRef: RefObject<HTMLDivElement | null>, onEscape: () => void) {
   useEffect(() => {
     if (!active || !containerRef.current) return
 
@@ -55,7 +56,7 @@ function useFocusTrap(active: boolean, containerRef: RefObject<HTMLElement | nul
 export function MobileNav({ navLinks }: MobileNavProps) {
   const { isNavOpen: isOpen, toggleNav: onToggle, closeNav: onClose } = useNav()
   const menuId = useId()
-  const overlayRef = useRef<HTMLElement | null>(null)
+  const overlayRef = useRef<HTMLDivElement | null>(null)
 
   useFocusTrap(isOpen, overlayRef, onClose)
 
@@ -80,63 +81,66 @@ export function MobileNav({ navLinks }: MobileNavProps) {
         aria-controls={menuId}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
       >
-        {isOpen ? <X size={28} /> : <Menu size={28} />}
+        {isOpen ? <X size={26} /> : <Menu size={26} />}
       </button>
 
-      {isOpen ? (
-        <section
-          id={menuId}
-          ref={overlayRef}
-          aria-modal="true"
-          role="dialog"
-          aria-label="Mobile navigation menu"
-          className="fixed inset-0 z-[120] bg-[#121f37]"
-          style={{
-            paddingTop: 'max(1.25rem, env(safe-area-inset-top, 0px))',
-            paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))',
-          }}
-        >
-          <div className="h-full flex flex-col">
-            <div className="flex items-start justify-end px-4 sm:px-6">
-              <button
-                type="button"
-                onClick={onClose}
-                className="p-2 text-white/90 hover:text-white transition-colors"
-                aria-label="Close mobile menu"
-              >
-                <X size={34} strokeWidth={2.1} />
-              </button>
-            </div>
-
-            <nav aria-label="Mobile main navigation" className="flex-1 flex items-center justify-end px-4 sm:px-6">
-              <ul className="space-y-3 text-right">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
-                      onClick={onClose}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <a
-                    href="https://order.toasttab.com/online/the-pier-driftwoods"
-                    target="_blank"
-                    rel="noopener noreferrer"
+      {isOpen
+        ? createPortal(
+            <div
+              id={menuId}
+              ref={overlayRef}
+              aria-modal="true"
+              role="dialog"
+              aria-label="Mobile navigation menu"
+              className="fixed top-0 left-0 w-screen h-screen z-[120] bg-[#121f37]"
+              style={{
+                paddingTop: 'max(1.25rem, env(safe-area-inset-top, 0px))',
+                paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))',
+              }}
+            >
+              <div className="h-full w-full flex flex-col">
+                <div className="flex items-start justify-end px-4 sm:px-6 lg:px-8">
+                  <button
+                    type="button"
                     onClick={onClose}
-                    className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
+                    className="p-2 text-white/90 hover:text-white transition-colors"
+                    aria-label="Close mobile menu"
                   >
-                    Order Online
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </section>
-      ) : null}
+                    <X size={34} strokeWidth={2.1} />
+                  </button>
+                </div>
+
+                <nav aria-label="Mobile main navigation" className="flex-1 flex items-center justify-end px-6 sm:px-8 lg:px-16">
+                  <ul className="space-y-3 text-right">
+                    {navLinks.map((link) => (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
+                          onClick={onClose}
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                    <li>
+                      <a
+                        href="https://order.toasttab.com/online/the-pier-driftwoods"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={onClose}
+                        className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
+                      >
+                        Order Online
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
     </>
   )
 }

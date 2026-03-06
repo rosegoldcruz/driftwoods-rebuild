@@ -4,7 +4,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn, ChevronLeft, ChevronRight, Utensils, Wine, Clock, Sun } from 'lucide-react'
-import Image from 'next/image'
+import { createPortal } from 'react-dom'
 
 // Picture Menu Data - All 8 images organized into 4 sections
 const pictureMenus = [
@@ -285,15 +285,16 @@ function PictureMenuViewer({
 
   if (!menu) return null
 
-  return (
+  if (typeof document === 'undefined') return null
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/95 flex flex-col"
-          onClick={onClose}
+          className="fixed inset-0 z-[140] bg-black/95 flex flex-col"
         >
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-white/10">
@@ -308,6 +309,7 @@ function PictureMenuViewer({
               <button
                 onClick={onClose}
                 className="text-white/70 hover:text-white transition-colors p-2"
+                aria-label="Close menu viewer"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -405,6 +407,8 @@ function PictureMenuViewer({
         </motion.div>
       )}
     </AnimatePresence>
+    ,
+    document.body
   )
 }
 
@@ -463,13 +467,19 @@ export default function MenuPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {pictureMenus.map((menu, idx) => (
-              <motion.button
+              <motion.a
                 key={menu.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                onClick={() => setSelectedPictureMenu(menu)}
+                href={menu.images[0]}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(event) => {
+                  event.preventDefault()
+                  setSelectedPictureMenu(menu)
+                }}
                 className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-amber-500/50 transition-all duration-300 hover:scale-105 text-left premium-card"
               >
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform glow-icon-chip">
@@ -480,7 +490,7 @@ export default function MenuPage() {
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                   <ZoomIn className="w-5 h-5 text-amber-500" />
                 </div>
-              </motion.button>
+              </motion.a>
             ))}
           </div>
         </div>

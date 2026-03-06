@@ -40,7 +40,7 @@ function NavbarInner() {
         </Link>
 
         <div className="flex items-center gap-4">
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <CoolMode options={{ particle: 'circle', particleCount: 20 }}>

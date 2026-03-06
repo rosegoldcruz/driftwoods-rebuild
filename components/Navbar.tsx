@@ -7,7 +7,7 @@ import { MobileNav } from './MobileNav'
 import { CoolMode } from './ui/cool-mode'
 import { StarBorder } from './ui/StarBorder'
 import FlingIcons from './FlingIcons'
-import { NavProvider } from '@/context/NavContext'
+import { NavProvider, useNav } from '@/context/NavContext'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -19,6 +19,7 @@ const navLinks = [
 
 function NavbarInner() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const { isNavOpen } = useNav()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -40,7 +41,11 @@ function NavbarInner() {
         </Link>
 
         <div className="flex items-center gap-4">
-          <ul className="flex items-center gap-8">
+          <ul
+            className={`flex items-center gap-8 transition-opacity duration-200 ${
+              isNavOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}
+          >
             {navLinks.map((link) => (
               <li key={link.href}>
                 <CoolMode options={{ particle: 'circle', particleCount: 20 }}>

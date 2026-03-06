@@ -90,7 +90,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
           aria-modal="true"
           role="dialog"
           aria-label="Mobile navigation menu"
-          className="fixed inset-0 z-[120] bg-dark"
+          className="fixed inset-0 z-[120] bg-[#121f37]"
           style={{
             paddingTop: 'max(1.25rem, env(safe-area-inset-top, 0px))',
             paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))',
@@ -126,6 +126,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
                     href="https://order.toasttab.com/online/the-pier-driftwoods"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={onClose}
                     className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
                   >
                     Order Online

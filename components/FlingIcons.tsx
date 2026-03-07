@@ -269,7 +269,7 @@ export default function FlingIcons() {
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0"
-      style={{ zIndex: 116 }}
+      style={{ zIndex: 130 }}
       aria-hidden="true"
     />
   );

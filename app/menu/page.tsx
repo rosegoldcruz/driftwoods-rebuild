@@ -251,14 +251,15 @@ function PictureMenuViewer({
   onClose: () => void
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [isZoomed, setIsZoomed] = useState(false)
+  const [zoomLevel, setZoomLevel] = useState(1)
   const [zoomPosition, setZoomPosition] = useState({ x: 50, y: 50 })
   const imageContainerRef = useRef<HTMLDivElement>(null)
+  const isZoomed = zoomLevel > 1
 
   useEffect(() => {
     if (isOpen) {
       setCurrentImageIndex(0)
-      setIsZoomed(false)
+      setZoomLevel(1)
     }
   }, [isOpen, menu])
 
@@ -281,6 +282,29 @@ function PictureMenuViewer({
     const x = ((e.clientX - rect.left) / rect.width) * 100
     const y = ((e.clientY - rect.top) / rect.height) * 100
     setZoomPosition({ x, y })
+  }
+
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (typeof window === 'undefined' || window.innerWidth < 1024) return
+
+    e.preventDefault()
+
+    if (imageContainerRef.current) {
+      const rect = imageContainerRef.current.getBoundingClientRect()
+      const x = ((e.clientX - rect.left) / rect.width) * 100
+      const y = ((e.clientY - rect.top) / rect.height) * 100
+      setZoomPosition({ x, y })
+    }
+
+    setZoomLevel((prev) => {
+      const next = prev + (e.deltaY < 0 ? 0.2 : -0.2)
+      return Math.min(3, Math.max(1, Number(next.toFixed(2))))
+    })
+  }
+
+  const handleImageClick = () => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 1024) return
+    setZoomLevel((prev) => (prev > 1 ? 1 : 1.5))
   }
 
   if (!menu) return null
@@ -346,8 +370,9 @@ function PictureMenuViewer({
               <div
                 ref={imageContainerRef}
                 className={`relative max-w-full max-h-full cursor-${isZoomed ? 'zoom-out' : 'zoom-in'} overflow-hidden`}
-                onClick={() => setIsZoomed(!isZoomed)}
+                onClick={handleImageClick}
                 onMouseMove={handleMouseMove}
+                onWheel={handleWheel}
                 style={{
                   width: isZoomed ? '100%' : 'auto',
                   height: isZoomed ? '100%' : 'auto'
@@ -357,17 +382,18 @@ function PictureMenuViewer({
                   src={menu.images[currentImageIndex]}
                   alt={`${menu.name} - Page ${currentImageIndex + 1}`}
                   className={`transition-transform duration-300 ${isZoomed
-                    ? 'w-full h-full object-contain scale-150'
+                    ? 'w-full h-full object-contain'
                     : 'max-w-full max-h-[75vh] object-contain'
                     }`}
                   style={isZoomed ? {
+                    transform: `scale(${zoomLevel})`,
                     transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
                   } : undefined}
                 />
                 {!isZoomed && (
                   <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm flex items-center gap-1">
                     <ZoomIn className="w-4 h-4" />
-                    <span className="hidden md:inline">Click to zoom</span>
+                    <span className="hidden md:inline">Scroll to zoom</span>
                   </div>
                 )}
               </div>
@@ -384,7 +410,7 @@ function PictureMenuViewer({
                     onClick={(e) => {
                       e.stopPropagation()
                       setCurrentImageIndex(idx)
-                      setIsZoomed(false)
+                      setZoomLevel(1)
                     }}
                     className={`relative w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 transition-all ${idx === currentImageIndex
                       ? 'border-amber-500 scale-105'

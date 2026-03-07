@@ -29,3 +29,4 @@ export function useNav() {
   if (!ctx) throw new Error('useNav must be used inside <NavProvider>')
   return ctx
 }
+

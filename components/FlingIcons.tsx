@@ -18,18 +18,20 @@ import { useNav } from "@/context/NavContext";
 
 const ICONS = [
   "/icons/dw.svg",
-  "/icons/dw2.svg",
   "/icons/dw3.svg",
   "/icons/wave.svg",
+  "/icons/surf.svg",
   "/icons/surfboard.svg",
+  "/icons/burger.svg",
   "/icons/mug.svg",
   "/icons/mug2.svg",
   "/icons/umbrella.svg",
   "/icons/fire.svg",
-  "/icons/grill.svg",
+  "/icons/wing.svg",
   "/icons/horizon.svg",
   "/icons/neon-sign-icon.svg",
   "/icons/spatula.svg",
+  "/icons/booger.svg",
 ];
 
 const COUNT = 10; // Match LuckyFolks count

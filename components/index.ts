@@ -1,6 +1,7 @@
 // components/index.ts
 export { Navbar } from './Navbar'
 export { Footer } from './Footer'
+export { HomeIntroLoader } from './HomeIntroLoader'
 export { Hero } from './Hero'
 export { AboutSection } from './AboutSection'
 export { NewsletterForm } from './NewsletterForm'
@@ -8,4 +9,3 @@ export { FoodGallery } from './FoodGallery'
 export { SmoothScroll } from './SmoothScroll'
 export { MobileCTA } from './MobileCTA'
 export { TrustSection } from './TrustSection'
-export { LoadingScreen } from './LoadingScreen'

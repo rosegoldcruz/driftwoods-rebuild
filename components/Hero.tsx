@@ -29,12 +29,12 @@ export function Hero() {
   }
 
   return (
-    <section id="hero-section" ref={sectionRef} className="hero-section relative min-h-[100svh] flex items-center justify-center overflow-hidden desktop-neon-stage">
-        <motion.div className="absolute inset-0 z-0" style={{ y: isMobile ? 0 : y }}>
+    <section id="hero-section" ref={sectionRef} className="hero-section relative flex items-center justify-center desktop-neon-stage">
+        <motion.div className="hero-background absolute inset-0 z-0" style={{ y: isMobile ? 0 : y }}>
           <img
             src="https://cdn.ing/assets/i/r/143988/ue3nwb6bsmjre17n396ofy1dvivs/wall.webp"
             alt=""
-            className="w-full h-full object-cover"
+            className="hero-image"
             style={{ objectPosition: 'center 5%' }}
             loading="eager"
           />
@@ -46,13 +46,13 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="relative z-10 container text-center px-4 py-16"
+          className="relative z-10 w-full text-center px-4 sm:px-6 lg:px-10 py-16"
           style={{ opacity: isMobile ? 1 : opacity }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="max-w-3xl mx-auto">
+          <div>
             <motion.img
               src="/signage.svg"
               alt="Driftwoods Bar & Grill"

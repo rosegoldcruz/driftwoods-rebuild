@@ -43,7 +43,7 @@ function NavbarInner() {
         <div className="flex items-center gap-4">
           <ul
             className={`hidden lg:flex items-center gap-7 transition-opacity duration-200 ${
-              isNavOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+              isNavOpen ? 'opacity-100' : 'opacity-100'
             }`}
           >
             {navLinks.map((link) => (

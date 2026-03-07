@@ -54,9 +54,14 @@ function useFocusTrap(active: boolean, containerRef: RefObject<HTMLDivElement | 
 }
 
 export function MobileNav({ navLinks }: MobileNavProps) {
-  const { isNavOpen: isOpen, toggleNav: onToggle, closeNav: onClose } = useNav()
+  const { isNavOpen: isOpen, toggleNav: onToggle, closeNav: onClose, triggerCelebration } = useNav()
   const menuId = useId()
   const overlayRef = useRef<HTMLDivElement | null>(null)
+
+  const handleNavLinkClick = () => {
+    triggerCelebration()
+    onClose()
+  }
 
   useFocusTrap(isOpen, overlayRef, onClose)
 
@@ -117,7 +122,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
                         <Link
                           href={link.href}
                           className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
-                          onClick={onClose}
+                          onClick={handleNavLinkClick}
                         >
                           {link.label}
                         </Link>

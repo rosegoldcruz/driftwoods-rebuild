@@ -47,7 +47,7 @@ interface LoadedIcon {
 }
 
 export default function FlingIcons() {
-  const { isNavOpen } = useNav();
+  const { isNavOpen, celebrationCount } = useNav();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<Matter.Engine | null>(null);
   const bodiesRef = useRef<IconBody[]>([]);
@@ -112,7 +112,7 @@ export default function FlingIcons() {
   }, []);
 
   useEffect(() => {
-    if (!isNavOpen) {
+    if (!isNavOpen && celebrationCount === 0) {
       cleanup();
       return;
     }
@@ -128,6 +128,8 @@ export default function FlingIcons() {
       // Icons not ready yet, wait for next render
       return;
     }
+
+    cleanup();
 
     isActiveRef.current = true;
 
@@ -263,7 +265,7 @@ export default function FlingIcons() {
 
     // Cleanup on unmount or nav close
     return cleanup;
-  }, [isNavOpen, cleanup]);
+  }, [isNavOpen, celebrationCount, cleanup]);
 
   return (
     <canvas

@@ -19,7 +19,7 @@ const navLinks = [
 
 function NavbarInner() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const { isNavOpen } = useNav()
+  const { isNavOpen, triggerCelebration } = useNav()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -49,7 +49,11 @@ function NavbarInner() {
             {navLinks.map((link) => (
               <li key={link.href}>
                 <CoolMode options={{ particle: 'circle', particleCount: 20 }}>
-                  <Link href={link.href} className="text-cream hover:text-primary transition-colors font-semibold text-[0.9rem] tracking-[0.08em] uppercase">
+                  <Link
+                    href={link.href}
+                    onClick={triggerCelebration}
+                    className="text-cream hover:text-primary transition-colors font-semibold text-[0.9rem] tracking-[0.08em] uppercase"
+                  >
                     {link.label}
                   </Link>
                 </CoolMode>

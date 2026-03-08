@@ -1,7 +1,7 @@
 // components/MobileNav.tsx
 'use client'
 
-import { useEffect, useId, useRef, type RefObject } from 'react'
+import { useEffect, useId, useRef, useState, type RefObject } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { createPortal } from 'react-dom'
@@ -72,6 +72,14 @@ const footerV = {
   exit:   { opacity: 0, transition: { duration: 0.15 } },
 }
 
+/* ── portal wrapper: keeps AnimatePresence inside the portal ── */
+function NavTrayPortal({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => { setMounted(true) }, [])
+  if (!mounted) return null
+  return createPortal(children, document.body)
+}
+
 /* ── component ── */
 export function MobileNav({ navLinks }: MobileNavProps) {
   const { isNavOpen: isOpen, openNav, closeNav: onClose, triggerFling, triggerCelebration } = useNav()
@@ -111,124 +119,129 @@ export function MobileNav({ navLinks }: MobileNavProps) {
         {isOpen ? <X size={26} /> : <Menu size={26} />}
       </button>
 
-      <AnimatePresence mode="wait">
-        {isOpen
-          ? createPortal(
-              <div
-                id={menuId}
-                ref={overlayRef}
-                aria-modal="true"
-                role="dialog"
-                aria-label="Navigation menu"
-                className="fixed inset-0 z-[120]"
+      {/* Portal is always mounted; AnimatePresence lives INSIDE the portal */}
+      <NavTrayPortal>
+        <AnimatePresence mode="wait">
+          {isOpen && (
+            <motion.div
+              key="nav-tray-overlay"
+              id={menuId}
+              ref={overlayRef}
+              aria-modal="true"
+              role="dialog"
+              aria-label="Navigation menu"
+              className="fixed inset-0 z-[120]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.1 }}
+            >
+              {/* ── dark backdrop (left side visible through) ── */}
+              <motion.div
+                className="absolute inset-0 bg-[#080e18]/85"
+                variants={backdropV}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                onClick={onClose}
+              />
+
+              {/* ── sliding tray panel (right half on desktop, full on mobile) ── */}
+              <motion.div
+                className="nav-tray"
+                variants={panelV}
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                style={{
+                  paddingTop: 'max(1.5rem, env(safe-area-inset-top, 0px))',
+                  paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))',
+                }}
               >
-                {/* ── dark backdrop (left side visible through) ── */}
-                <motion.div
-                  className="absolute inset-0 bg-[#080e18]/85"
-                  variants={backdropV}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                  onClick={onClose}
-                />
+                {/* ambient layers — grain + gradient drift + scanlines */}
+                <div className="nav-tray-grain" aria-hidden="true" />
+                <div className="nav-tray-drift" aria-hidden="true" />
+                <div className="nav-tray-scan" aria-hidden="true" />
 
-                {/* ── sliding tray panel (right half) ── */}
-                <motion.div
-                  className="nav-tray"
-                  variants={panelV}
-                  initial="hidden"
-                  animate="show"
-                  exit="exit"
-                  style={{
-                    paddingTop: 'max(1.5rem, env(safe-area-inset-top, 0px))',
-                    paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px))',
-                  }}
-                >
-                  {/* ambient layers — grain + gradient drift + scanlines */}
-                  <div className="nav-tray-grain" aria-hidden="true" />
-                  <div className="nav-tray-drift" aria-hidden="true" />
-                  <div className="nav-tray-scan" aria-hidden="true" />
-
-                  {/* close button */}
-                  <div className="relative z-10 flex justify-end px-6 sm:px-8 lg:px-10 mb-2 lg:mb-4">
-                    <motion.button
-                      type="button"
-                      onClick={onClose}
-                      className="p-2.5 rounded-full border border-white/10 text-cream/50 hover:text-cream hover:border-white/25 transition-all"
-                      aria-label="Close menu"
-                      variants={closeBtnV}
-                      initial="hidden"
-                      animate="show"
-                      exit="exit"
-                    >
-                      <X size={24} strokeWidth={1.5} />
-                    </motion.button>
-                  </div>
-
-                  {/* nav links */}
-                  <nav aria-label="Main navigation" className="relative z-10 flex-1 flex items-center px-8 sm:px-10 lg:px-14">
-                    <motion.ul
-                      className="w-full space-y-1 sm:space-y-2"
-                      variants={staggerContainer}
-                      initial="hidden"
-                      animate="show"
-                      exit="exit"
-                    >
-                      {navLinks.map((link, i) => (
-                        <motion.li key={link.href} variants={linkV}>
-                          <CoolMode options={{ particle: 'circle', particleCount: 20 }} className="block">
-                            <Link
-                              href={link.href}
-                              className="nav-tray-link group"
-                              onClick={handleNavLinkClick}
-                            >
-                              <span className="nav-tray-index">{ROMAN[i]}</span>
-                              <span className="nav-tray-label">{link.label}</span>
-                            </Link>
-                          </CoolMode>
-                        </motion.li>
-                      ))}
-
-                      {/* order online CTA */}
-                      <motion.li variants={linkV} className="pt-4 sm:pt-6">
-                        <CoolMode options={{ particle: 'circle', particleCount: 20 }} className="block">
-                          <a
-                            href="https://order.toasttab.com/online/the-pier-driftwoods"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={handleNavLinkClick}
-                            className="nav-tray-cta"
-                          >
-                            Order Online
-                          </a>
-                        </CoolMode>
-                      </motion.li>
-                    </motion.ul>
-                  </nav>
-
-                  {/* footer info */}
-                  <motion.div
-                    className="relative z-10 px-8 sm:px-10 lg:px-14 pt-5 mt-auto"
-                    variants={footerV}
+                {/* close button */}
+                <div className="relative z-10 flex justify-end px-6 sm:px-8 lg:px-10 mb-2 lg:mb-4">
+                  <motion.button
+                    type="button"
+                    onClick={onClose}
+                    className="p-2.5 rounded-full border border-white/10 text-cream/50 hover:text-cream hover:border-white/25 transition-all"
+                    aria-label="Close menu"
+                    variants={closeBtnV}
                     initial="hidden"
                     animate="show"
                     exit="exit"
                   >
-                    <div className="border-t border-white/[0.08] pt-5">
-                      <p className="text-[11px] sm:text-xs tracking-[0.15em] uppercase text-cream/30 font-light">
-                        Driftwoods &middot; Bar &amp; Grill
-                      </p>
-                      <p className="text-[11px] sm:text-xs text-cream/20 mt-1 font-light">
-                        9832 N. 7th St. Phoenix, AZ 85020
-                      </p>
-                    </div>
-                  </motion.div>
+                    <X size={24} strokeWidth={1.5} />
+                  </motion.button>
+                </div>
+
+                {/* nav links */}
+                <nav aria-label="Main navigation" className="relative z-10 flex-1 flex items-center px-8 sm:px-10 lg:px-14">
+                  <motion.ul
+                    className="w-full space-y-1 sm:space-y-2"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="show"
+                    exit="exit"
+                  >
+                    {navLinks.map((link, i) => (
+                      <motion.li key={link.href} variants={linkV}>
+                        <CoolMode options={{ particle: 'circle', particleCount: 20 }} className="block">
+                          <Link
+                            href={link.href}
+                            className="nav-tray-link group"
+                            onClick={handleNavLinkClick}
+                          >
+                            <span className="nav-tray-index">{ROMAN[i]}</span>
+                            <span className="nav-tray-label">{link.label}</span>
+                          </Link>
+                        </CoolMode>
+                      </motion.li>
+                    ))}
+
+                    {/* order online CTA */}
+                    <motion.li variants={linkV} className="pt-4 sm:pt-6">
+                      <CoolMode options={{ particle: 'circle', particleCount: 20 }} className="block">
+                        <a
+                          href="https://order.toasttab.com/online/the-pier-driftwoods"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={handleNavLinkClick}
+                          className="nav-tray-cta"
+                        >
+                          Order Online
+                        </a>
+                      </CoolMode>
+                    </motion.li>
+                  </motion.ul>
+                </nav>
+
+                {/* footer info */}
+                <motion.div
+                  className="relative z-10 px-8 sm:px-10 lg:px-14 pt-5 mt-auto"
+                  variants={footerV}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"
+                >
+                  <div className="border-t border-white/[0.08] pt-5">
+                    <p className="text-[11px] sm:text-xs tracking-[0.15em] uppercase text-cream/30 font-light">
+                      Driftwoods &middot; Bar &amp; Grill
+                    </p>
+                    <p className="text-[11px] sm:text-xs text-cream/20 mt-1 font-light">
+                      9832 N. 7th St. Phoenix, AZ 85020
+                    </p>
+                  </div>
                 </motion.div>
-              </div>,
-              document.body
-            )
-          : null}
-      </AnimatePresence>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </NavTrayPortal>
     </>
   )
 }

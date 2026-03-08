@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { createPortal } from 'react-dom'
 import { useNav } from '@/context/NavContext'
+import { CoolMode } from './ui/cool-mode'
 
 type NavLink = {
   href: string
@@ -54,9 +55,25 @@ function useFocusTrap(active: boolean, containerRef: RefObject<HTMLDivElement | 
 }
 
 export function MobileNav({ navLinks }: MobileNavProps) {
-  const { isNavOpen: isOpen, toggleNav: onToggle, closeNav: onClose, triggerCelebration } = useNav()
+  const {
+    isNavOpen: isOpen,
+    openNav,
+    closeNav: onClose,
+    triggerFling,
+    triggerCelebration,
+  } = useNav()
   const menuId = useId()
   const overlayRef = useRef<HTMLDivElement | null>(null)
+
+  const handleHamburgerOpen = () => {
+    if (isOpen) {
+      onClose()
+      return
+    }
+
+    openNav()
+    triggerFling()
+  }
 
   const handleNavLinkClick = () => {
     triggerCelebration()
@@ -81,7 +98,7 @@ export function MobileNav({ navLinks }: MobileNavProps) {
       <button
         type="button"
         className="p-2 text-cream hover:text-primary transition-colors"
-        onClick={onToggle}
+        onClick={handleHamburgerOpen}
         aria-expanded={isOpen}
         aria-controls={menuId}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
@@ -119,25 +136,29 @@ export function MobileNav({ navLinks }: MobileNavProps) {
                   <ul className="space-y-3 text-right">
                     {navLinks.map((link) => (
                       <li key={link.href}>
-                        <Link
-                          href={link.href}
-                          className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
-                          onClick={handleNavLinkClick}
-                        >
-                          {link.label}
-                        </Link>
+                        <CoolMode options={{ particle: 'circle', particleCount: 20 }} className="block">
+                          <Link
+                            href={link.href}
+                            className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
+                            onClick={handleNavLinkClick}
+                          >
+                            {link.label}
+                          </Link>
+                        </CoolMode>
                       </li>
                     ))}
                     <li>
-                      <a
-                        href="https://order.toasttab.com/online/the-pier-driftwoods"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={onClose}
-                        className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
-                      >
-                        Order Online
-                      </a>
+                      <CoolMode options={{ particle: 'circle', particleCount: 20 }} className="block">
+                        <a
+                          href="https://order.toasttab.com/online/the-pier-driftwoods"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={handleNavLinkClick}
+                          className="block font-heading text-[2rem] sm:text-[2.25rem] leading-[1.05] tracking-[0.06em] uppercase font-semibold text-white/95 hover:text-primary-light transition-colors"
+                        >
+                          Order Online
+                        </a>
+                      </CoolMode>
                     </li>
                   </ul>
                 </nav>

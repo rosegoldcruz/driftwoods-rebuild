@@ -1,34 +1,43 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useCallback } from 'react'
+import { flushSync } from 'react-dom'
 import { gsap } from 'gsap'
 
 const LOADER_VIDEO_SRC = '/videos/Load screen 2.mp4'
 
 export function HomeIntroLoader() {
   const sectionRef = useRef<HTMLElement>(null)
-  const [isVisible, setIsVisible] = useState(true)
+  const [mounted, setMounted] = useState(true)
 
-  const handleVideoEnd = () => {
-    if (!sectionRef.current) return
+  const handleVideoEnd = useCallback(() => {
+    const el = sectionRef.current
+    if (!el) return
 
-    // Complete fade-out with full cleanup to prevent mobile ghosting
-    gsap.to(sectionRef.current, {
+    // Immediately block interaction
+    el.style.pointerEvents = 'none'
+
+    gsap.to(el, {
       opacity: 0,
       duration: 0.8,
-      pointerEvents: 'none',
+      ease: 'power2.inOut',
       onComplete: () => {
-        // Hide visibility and clear GSAP properties to prevent mobile Safari ghosting
-        gsap.set(sectionRef.current, { 
-          visibility: 'hidden',
-          clearProps: 'all'
-        })
-        setIsVisible(false)
+        // Kill any lingering GSAP tweens on this element
+        gsap.killTweensOf(el)
+
+        // Force-hide the element so no ghost frame can appear
+        el.style.display = 'none'
+        el.style.visibility = 'hidden'
+
+        // Synchronously unmount from React tree — flushSync ensures
+        // the DOM removal happens in the same microtask, so there is
+        // zero frames where clearProps could flash the element back.
+        flushSync(() => setMounted(false))
       },
     })
-  }
+  }, [])
 
-  if (!isVisible) return null
+  if (!mounted) return null
 
   return (
     <section

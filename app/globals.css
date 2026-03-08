@@ -225,6 +225,10 @@ input:focus {
   overflow: hidden;
   background: #000;
   padding: 0 !important;
+  /* Hint GPU layer so fade is smooth, torn down cleanly on unmount */
+  will-change: opacity;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .loader-video {

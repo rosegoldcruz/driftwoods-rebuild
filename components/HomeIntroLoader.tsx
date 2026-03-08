@@ -2,8 +2,11 @@
 
 import { useRef, useState } from 'react'
 import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
 const LOADER_VIDEO_SRC = '/videos/Load screen 2.mp4'
+
+gsap.registerPlugin(ScrollToPlugin)
 
 export function HomeIntroLoader() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -12,13 +15,19 @@ export function HomeIntroLoader() {
   const handleVideoEnd = () => {
     if (!sectionRef.current) return
 
-    // Slide the fixed loader upward while fading — hero is revealed beneath.
-    // No scroll, no fake spacer. The loader moves out of frame cinematically.
-    gsap.to(sectionRef.current, {
-      y: '-100%',
-      opacity: 0,
-      duration: 1.2,
+    // Real downward scroll to hero section
+    gsap.to(window, {
+      duration: 1.4,
+      scrollTo: { y: '#hero-section', offsetY: 0 },
       ease: 'power3.inOut',
+    })
+
+    // Fade loader during the scroll
+    gsap.to(sectionRef.current, {
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.4,
+      pointerEvents: 'none',
       onComplete: () => setIsVisible(false),
     })
   }

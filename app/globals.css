@@ -216,6 +216,11 @@ input:focus {
   );
 }
 
+/* Main content wrapper - creates real scroll distance for intro-to-hero transition */
+.main-content {
+  padding-top: 100vh;
+}
+
 .loader-section {
   position: fixed;
   inset: 0;
@@ -225,7 +230,6 @@ input:focus {
   overflow: hidden;
   background: #000;
   padding: 0 !important;
-  will-change: transform, opacity;
 }
 
 .loader-video {
@@ -239,23 +243,22 @@ input:focus {
   transform: translate(-50%, -50%);
 }
 
-/* Scale up just enough to crop portrait-video edges on wider viewports.
-   Minimum scale is chosen per breakpoint — not a blunt single value. */
+/* Balanced desktop crop - enough to hide 9:16 edges, not over-zoomed */
 @media (min-width: 768px) {
   .loader-video {
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1.25);
   }
 }
 
 @media (min-width: 1024px) {
   .loader-video {
-    transform: translate(-50%, -50%) scale(1.65);
+    transform: translate(-50%, -50%) scale(1.35);
   }
 }
 
 @media (min-width: 1280px) {
   .loader-video {
-    transform: translate(-50%, -50%) scale(1.75);
+    transform: translate(-50%, -50%) scale(1.4);
   }
 }
 

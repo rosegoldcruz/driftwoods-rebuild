@@ -2,11 +2,8 @@
 
 import { useRef, useState } from 'react'
 import { gsap } from 'gsap'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
 const LOADER_VIDEO_SRC = '/videos/Load screen 2.mp4'
-
-gsap.registerPlugin(ScrollToPlugin)
 
 export function HomeIntroLoader() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -15,18 +12,10 @@ export function HomeIntroLoader() {
   const handleVideoEnd = () => {
     if (!sectionRef.current) return
 
-    // Real downward scroll to hero section
-    gsap.to(window, {
-      duration: 1.4,
-      scrollTo: { y: '#hero-section', offsetY: 0 },
-      ease: 'power3.inOut',
-    })
-
-    // Fade loader during the scroll
+    // Simple fade-out overlay - no scroll, homepage in normal flow underneath
     gsap.to(sectionRef.current, {
       opacity: 0,
       duration: 0.8,
-      delay: 0.4,
       pointerEvents: 'none',
       onComplete: () => setIsVisible(false),
     })

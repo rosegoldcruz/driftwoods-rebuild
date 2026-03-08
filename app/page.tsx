@@ -6,12 +6,10 @@ export default function HomePage() {
   return (
     <>
       <HomeIntroLoader />
-      <div className="main-content">
-        <Hero />
-        <TrustSection />
-        <AboutSection />
-        <NewsletterForm />
-      </div>
+      <Hero />
+      <TrustSection />
+      <AboutSection />
+      <NewsletterForm />
     </>
   )
 }

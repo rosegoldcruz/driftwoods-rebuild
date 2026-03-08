@@ -12,12 +12,19 @@ export function HomeIntroLoader() {
   const handleVideoEnd = () => {
     if (!sectionRef.current) return
 
-    // Simple fade-out overlay - no scroll, homepage in normal flow underneath
+    // Complete fade-out with full cleanup to prevent mobile ghosting
     gsap.to(sectionRef.current, {
       opacity: 0,
       duration: 0.8,
       pointerEvents: 'none',
-      onComplete: () => setIsVisible(false),
+      onComplete: () => {
+        // Hide visibility and clear GSAP properties to prevent mobile Safari ghosting
+        gsap.set(sectionRef.current, { 
+          visibility: 'hidden',
+          clearProps: 'all'
+        })
+        setIsVisible(false)
+      },
     })
   }
 

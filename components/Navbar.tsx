@@ -34,7 +34,7 @@ function NavbarInner() {
       >
         <nav className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 flex items-center justify-between" aria-label="Main navigation">
           <Link href="/" className="flex items-center gap-2" aria-label="Driftwoods Home">
-            <img src="/signage.svg" alt="Driftwoods" className="h-9 md:h-10 w-auto object-contain" />
+            <img src="/signage.svg" alt="Driftwoods" className="h-9 md:h-10 w-auto object-contain bg-transparent" style={{ background: 'transparent' }} />
         </Link>
 
         <div className="flex items-center gap-4">
